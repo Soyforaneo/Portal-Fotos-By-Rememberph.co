@@ -8,7 +8,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body {
-      background: #090d16;
+      background: #07090e;
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -19,140 +19,73 @@
       overflow-x: hidden;
     }
     .glow-1 {
-      position: absolute; width: 320px; height: 320px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(236,72,153,0.35) 0%, transparent 70%);
-      top: -80px; left: -80px; filter: blur(40px); z-index: 0;
+      position: fixed; width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(236,72,153,0.3) 0%, transparent 70%);
+      top: -100px; left: -100px; filter: blur(50px); pointer-events: none;
     }
     .glow-2 {
-      position: absolute; width: 320px; height: 320px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(6,182,212,0.3) 0%, transparent 70%);
-      bottom: -80px; right: -80px; filter: blur(40px); z-index: 0;
+      position: fixed; width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.25) 0%, transparent 70%);
+      bottom: -100px; right: -100px; filter: blur(50px); pointer-events: none;
     }
     .card {
-      background: rgba(18, 24, 38, 0.85);
-      backdrop-filter: blur(20px);
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(25px);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 28px;
-      padding: 32px 24px;
+      padding: 34px 22px;
       max-width: 420px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.7);
       position: relative;
       z-index: 1;
     }
     .close-btn {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      cursor: not-allowed;
-      transition: all 0.25s ease;
+      position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      color: #94a3b8; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem; cursor: not-allowed; transition: 0.25s;
     }
     .close-btn.unlocked {
-      background: #ef4444;
-      border-color: #f87171;
-      color: #fff;
-      cursor: pointer;
+      background: #ef4444; border-color: #f87171; color: #fff; cursor: pointer;
       box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
     }
-    .logo-container {
-      margin: 0 auto 18px;
-      display: inline-block;
+    .avatar-wrap {
+      width: 95px; height: 95px; border-radius: 24px; margin: 0 auto 18px; padding: 3px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4); box-shadow: 0 0 25px rgba(236,72,153,0.45);
     }
-    .logo-img {
-      width: 82px;
-      height: 82px;
-      border-radius: 50%;
-      object-fit: cover;
-      padding: 3px;
-      background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4);
-      box-shadow: 0 0 20px rgba(236,72,153,0.4);
-    }
+    .avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 21px; }
     h1 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, #fff 40%, #cbd5e1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 1.45rem; font-weight: 800; margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff 50%, #cbd5e1);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    p.subtitle {
-      font-size: 0.95rem;
-      color: #94a3b8;
-      line-height: 1.45;
-      margin-bottom: 24px;
+    p.sub { font-size: 0.9rem; color: #94a3b8; line-height: 1.4; margin-bottom: 22px; }
+    
+    .btn-ig {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      box-shadow: 0 6px 20px rgba(220,39,67,0.4); color: white; text-decoration: none;
+      padding: 14px; border-radius: 14px; font-weight: 700; font-size: 0.95rem; margin-bottom: 12px;
     }
-    .social-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 22px;
-    }
-    .social-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 18px;
-      border-radius: 14px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .social-btn:active { transform: scale(0.97); }
-    .btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 4px 16px rgba(220,39,67,0.35); }
-    .btn-tiktok { background: #000; border: 1px solid #222; box-shadow: 0 4px 16px rgba(0,242,234,0.25); }
-    .btn-wa { background: #25d366; color: #072b14; box-shadow: 0 4px 16px rgba(37,211,102,0.35); }
-    .btn-fb { background: #1877f2; box-shadow: 0 4px 16px rgba(24,119,242,0.35); }
-    .btn-yt { background: #ff0000; box-shadow: 0 4px 16px rgba(255,0,0,0.35); }
-    .btn-def { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
-
-    .progress-bar-wrap {
-      width: 100%;
-      height: 5px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 14px;
-    }
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #ec4899, #06b6d4);
-      transition: width 1s linear;
+    .btn-tt {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #000; border: 1px solid #334155; box-shadow: 0 6px 20px rgba(0,242,234,0.2);
+      color: white; text-decoration: none; padding: 14px; border-radius: 14px; font-weight: 700; font-size: 0.95rem; margin-bottom: 18px;
     }
 
-    .btn-continue {
-      width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-      color: #64748b;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: not-allowed;
-      transition: all 0.25s ease;
+    .bar-bg { width: 100%; height: 5px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+    .bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ec4899, #06b6d4); transition: width 1s linear; }
+
+    .btn-photos {
+      width: 100%; padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05); color: #64748b; font-size: 0.95rem; font-weight: 700;
+      cursor: not-allowed; transition: 0.25s;
     }
-    .btn-continue.unlocked {
-      background: linear-gradient(135deg, #3b82f6, #6366f1);
-      border-color: #60a5fa;
-      color: #fff;
-      cursor: pointer;
-      box-shadow: 0 8px 24px rgba(59,130,246,0.4);
+    .btn-photos.unlocked {
+      background: linear-gradient(135deg, #3b82f6, #6366f1); border-color: #60a5fa; color: #fff;
+      cursor: pointer; box-shadow: 0 8px 25px rgba(59,130,246,0.4);
     }
   </style>
 </head>
@@ -161,115 +94,75 @@
   <div class="glow-2"></div>
 
   <div class="card">
-    <button id="closeBtn" class="close-btn" aria-label="Cerrar">5s</button>
+    <button id="closeBtn" class="close-btn">5s</button>
 
-    <div id="logoWrapper" class="logo-container" style="display: none;">
-      <img id="logoImg" class="logo-img" src="" alt="Logo">
+    <div id="avatarWrap" class="avatar-wrap" style="display: none;">
+      <img id="avatarImg" class="avatar-img" src="" alt="Logo">
     </div>
 
-    <h1 id="mainTitle">¡Tus fotos están listas! ✨</h1>
-    <p id="mainSubtitle" class="subtitle">Síguenos para estar al día de los mejores momentos y enterarte de las novedades.</p>
+    <h1 id="titleDisplay">¡Tus fotos en alta calidad están listas! 📸</h1>
+    <p class="sub">Síguenos para revivir los mejores momentos del evento y etiquetarte en tus fotos.</p>
 
-    <div id="socialList" class="social-list"></div>
+    <a id="igLink" href="#" target="_blank" class="btn-ig">
+      <i class="fa-brands fa-instagram"></i> Seguir en Instagram
+    </a>
 
-    <div class="progress-bar-wrap">
-      <div id="progressFill" class="progress-fill"></div>
+    <a id="ttLink" href="#" target="_blank" class="btn-tt" style="display: none;">
+      <i class="fa-brands fa-tiktok"></i> Seguir en TikTok
+    </a>
+
+    <div class="bar-bg">
+      <div id="barFill" class="bar-fill"></div>
     </div>
 
-    <button id="continueBtn" class="btn-continue">
-      Preparando fotos (<span id="secCount">5</span>s)...
-    </button>
+    <button id="photosBtn" class="btn-photos">Preparando fotos (5s)...</button>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const targetUrl = params.get('destino') || 'https://instagram.com';
-    const logoUrl = params.get('logo');
-    const title = params.get('titulo');
-    const subtitle = params.get('subtitulo');
-    const igUser = params.get('ig');
-    const ttUser = params.get('tiktok');
-    const waNum = params.get('wa');
+    const targetUrl = params.get('f') || 'https://instagram.com';
+    const igUser = params.get('ig') || 'rememberph';
+    const ttUser = params.get('tt');
+    const logoUrl = params.get('l');
 
-    if (logoUrl) {
-      document.getElementById('logoImg').src = logoUrl;
-      document.getElementById('logoWrapper').style.display = 'inline-block';
-    }
-    if (title) document.getElementById('mainTitle').textContent = decodeURIComponent(title);
-    if (subtitle) document.getElementById('mainSubtitle').textContent = decodeURIComponent(subtitle);
-
-    const socialList = document.getElementById('socialList');
-
-    if (igUser) {
-      const clean = igUser.replace('@', '').trim();
-      const a = document.createElement('a');
-      a.className = 'social-btn btn-ig';
-      a.target = '_blank';
-      a.href = `https://instagram.com/${clean}`;
-      a.innerHTML = `<i class="fa-brands fa-instagram"></i> Seguir en Instagram`;
-      socialList.appendChild(a);
-    }
+    document.getElementById('igLink').href = `https://instagram.com/${igUser}`;
 
     if (ttUser) {
-      const clean = ttUser.replace('@', '').trim();
-      const a = document.createElement('a');
-      a.className = 'social-btn btn-tiktok';
-      a.target = '_blank';
-      a.href = `https://tiktok.com/@${clean}`;
-      a.innerHTML = `<i class="fa-brands fa-tiktok"></i> Seguir en TikTok`;
-      socialList.appendChild(a);
+      const tt = document.getElementById('ttLink');
+      tt.href = `https://tiktok.com/@${ttUser}`;
+      tt.style.display = 'flex';
     }
 
-    if (waNum) {
-      const clean = waNum.replace(/\D/g, '');
-      const a = document.createElement('a');
-      a.className = 'social-btn btn-wa';
-      a.target = '_blank';
-      a.href = `https://wa.me/${clean}`;
-      a.innerHTML = `<i class="fa-brands fa-whatsapp"></i> Chatear en WhatsApp`;
-      socialList.appendChild(a);
+    if (logoUrl) {
+      document.getElementById('avatarImg').src = logoUrl;
+      document.getElementById('avatarWrap').style.display = 'block';
     }
 
-    // Si no se pasó ninguna red social, dejamos por defecto Instagram
-    if (!igUser && !ttUser && !waNum) {
-      const a = document.createElement('a');
-      a.className = 'social-btn btn-ig';
-      a.target = '_blank';
-      a.href = `https://instagram.com`;
-      a.innerHTML = `<i class="fa-brands fa-instagram"></i> Seguir en Instagram`;
-      socialList.appendChild(a);
-    }
-
-    // Cuenta regresiva de 5 segundos
-    let seconds = 5;
+    let timeLeft = 5;
     const closeBtn = document.getElementById('closeBtn');
-    const continueBtn = document.getElementById('continueBtn');
-    const secCount = document.getElementById('secCount');
-    const progressFill = document.getElementById('progressFill');
+    const photosBtn = document.getElementById('photosBtn');
+    const barFill = document.getElementById('barFill');
 
-    function redirigir() {
+    function irAFotos() {
       window.location.href = targetUrl;
     }
 
-    const interval = setInterval(() => {
-      seconds--;
-      const percent = ((5 - seconds) / 5) * 100;
-      progressFill.style.width = percent + '%';
+    const timer = setInterval(() => {
+      timeLeft--;
+      barFill.style.width = ((5 - timeLeft) / 5 * 100) + '%';
 
-      if (seconds > 0) {
-        closeBtn.textContent = seconds + 's';
-        secCount.textContent = seconds;
+      if (timeLeft > 0) {
+        closeBtn.textContent = timeLeft + 's';
+        photosBtn.textContent = `Preparando fotos (${timeLeft}s)...`;
       } else {
-        clearInterval(interval);
-        // Habilitar la X
+        clearInterval(timer);
         closeBtn.textContent = '✕';
         closeBtn.classList.add('unlocked');
-        closeBtn.onclick = redirigir;
+        closeBtn.onclick = irAFotos;
 
-        // Habilitar botón inferior
-        continueBtn.classList.add('unlocked');
-        continueBtn.textContent = 'Ver mis fotos →';
-        continueBtn.onclick = redirigir;
+        photosBtn.textContent = 'Ver mis fotos →';
+        photosBtn.classList.add('unlocked');
+        photosBtn.onclick = irAFotos;
       }
     }, 1000);
   </script>
