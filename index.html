@@ -9,257 +9,372 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body {
-      background: #07090e;
+      background: #090c15;
       color: #fff;
       min-height: 100vh;
-      padding: 30px 20px;
+      padding: 35px 25px;
       display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;
       overflow-x: hidden;
     }
-    .ambient-bg {
-      position: fixed; width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(236,72,153,0.15) 0%, rgba(139,92,246,0.1) 40%, transparent 70%);
-      top: -150px; left: -150px; filter: blur(80px); pointer-events: none; z-index: 0;
+    .ambient-1 {
+      position: fixed; width: 650px; height: 650px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(236,72,153,0.18) 0%, rgba(139,92,246,0.1) 40%, transparent 70%);
+      top: -200px; left: -200px; filter: blur(90px); pointer-events: none; z-index: 0;
     }
-    .ambient-bg2 {
-      position: fixed; width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%);
-      bottom: -150px; right: -150px; filter: blur(80px); pointer-events: none; z-index: 0;
+    .ambient-2 {
+      position: fixed; width: 650px; height: 650px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.18) 0%, transparent 70%);
+      bottom: -200px; right: -200px; filter: blur(90px); pointer-events: none; z-index: 0;
     }
-    .top-bar {
-      max-width: 1200px; width: 100%; display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 25px; z-index: 1;
+
+    .top-header {
+      max-width: 1250px; width: 100%; display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 28px; z-index: 1;
     }
-    .brand-title { display: flex; align-items: center; gap: 14px; }
-    .brand-icon {
-      width: 44px; height: 44px; border-radius: 14px;
+    .brand-wrap { display: flex; align-items: center; gap: 14px; }
+    .brand-logo-icon {
+      width: 46px; height: 46px; border-radius: 14px;
       background: linear-gradient(135deg, #ec4899, #8b5cf6);
-      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-      box-shadow: 0 0 20px rgba(236,72,153,0.5);
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+      box-shadow: 0 0 25px rgba(236,72,153,0.55);
     }
-    .brand-title h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
-    .badge-sub {
-      font-size: 0.7rem; background: rgba(236,72,153,0.2); color: #f472b6;
-      padding: 3px 8px; border-radius: 20px; border: 1px solid rgba(236,72,153,0.3); font-weight: 700;
+    .brand-wrap h1 { font-size: 1.6rem; font-weight: 800; }
+    .badge-neon {
+      font-size: 0.7rem; background: rgba(236,72,153,0.22); color: #f472b6;
+      padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(236,72,153,0.35); font-weight: 700;
     }
-    .main-grid {
-      max-width: 1200px; width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr;
-      gap: 30px; z-index: 1;
+    .live-badge {
+      background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3);
+      color: #38bdf8; font-size: 0.8rem; font-weight: 700; padding: 6px 14px; border-radius: 20px;
     }
-    @media (max-width: 950px) { .main-grid { grid-template-columns: 1fr; } }
-    
-    .card-box {
+
+    .layout-grid {
+      max-width: 1250px; width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr;
+      gap: 35px; z-index: 1;
+    }
+    @media (max-width: 980px) { .layout-grid { grid-template-columns: 1fr; } }
+
+    .glass-card {
       background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(25px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 26px;
+      padding: 26px;
+      margin-bottom: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
     }
-    .box-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-    .box-header-left { display: flex; align-items: center; gap: 12px; }
-    .step-num {
-      width: 28px; height: 28px; border-radius: 50%; background: #ec4899;
-      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem;
+    .card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .head-left { display: flex; align-items: center; gap: 12px; }
+    .step-circle {
+      width: 32px; height: 32px; border-radius: 50%; background: #ec4899;
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;
+      box-shadow: 0 0 15px rgba(236,72,153,0.5);
     }
-    .box-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
-    .field-label { display: block; font-size: 0.8rem; font-weight: 700; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .custom-input, .custom-textarea {
-      width: 100%; background: rgba(8, 12, 22, 0.8); border: 1px solid #1e293b;
-      color: #fff; padding: 12px 14px; border-radius: 12px; font-size: 0.95rem; outline: none; transition: 0.2s;
+    .step-circle.green { background: #10b981; box-shadow: 0 0 15px rgba(16,185,129,0.5); }
+    .head-title { font-size: 1.15rem; font-weight: 800; color: #fff; }
+    .head-badge {
+      font-size: 0.75rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; padding: 4px 10px; border-radius: 12px;
     }
-    .custom-input:focus, .custom-textarea:focus { border-color: #ec4899; box-shadow: 0 0 15px rgba(236,72,153,0.3); }
-    .custom-textarea { resize: vertical; min-height: 65px; }
 
-    .templates-row { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-    .tpl-btn {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-      color: #cbd5e1; font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; cursor: pointer; transition: 0.2s;
+    .form-row { margin-bottom: 18px; }
+    .label-tag {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.8rem; font-weight: 700; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;
     }
-    .tpl-btn:hover { background: #ec4899; color: #fff; }
+    .input-box, .textarea-box {
+      width: 100%; background: rgba(8, 12, 22, 0.85); border: 1px solid #1e293b;
+      color: #fff; padding: 13px 15px; border-radius: 14px; font-size: 0.95rem; outline: none; transition: 0.2s;
+    }
+    .input-box:focus, .textarea-box:focus { border-color: #ec4899; box-shadow: 0 0 20px rgba(236,72,153,0.35); }
+    .textarea-box { resize: vertical; min-height: 75px; }
 
-    /* Output Section */
-    .link-out-container {
-      background: #090d16; border: 1px dashed rgba(236,72,153,0.4); border-radius: 16px; padding: 16px; margin-top: 15px;
+    /* Uploader */
+    .uploader-area {
+      display: flex; gap: 14px; align-items: center; margin-top: 5px;
     }
-    .clean-url {
+    .preview-thumb {
+      width: 58px; height: 58px; border-radius: 16px; object-fit: cover;
+      padding: 2px; background: linear-gradient(135deg, #ec4899, #8b5cf6); flex-shrink: 0;
+    }
+    .upload-btn-label {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
+    }
+    .upload-btn-label:hover { opacity: 0.9; }
+    .btn-remove-logo {
+      background: none; border: none; color: #ef4444; font-size: 0.8rem; font-weight: 700;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+    }
+
+    .pills-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .pill-item {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: #cbd5e1; font-size: 0.75rem; padding: 6px 13px; border-radius: 20px; cursor: pointer; transition: 0.2s;
+    }
+    .pill-item:hover { background: #ec4899; color: #fff; border-color: #ec4899; }
+
+    /* Enlace y QR */
+    .clean-box {
+      background: #07090e; border: 1px dashed rgba(16,185,129,0.5); border-radius: 18px; padding: 18px; margin-top: 10px;
+    }
+    .url-result {
       font-family: monospace; font-size: 0.85rem; color: #38bdf8; word-break: break-all;
-      background: #060911; padding: 10px; border-radius: 8px; border: 1px solid #1e293b; margin-bottom: 12px;
+      background: #04060a; padding: 12px; border-radius: 12px; border: 1px solid #1e293b; margin-bottom: 14px;
     }
-    .btn-action-copy {
+    .btn-copy-main {
       width: 100%; background: linear-gradient(135deg, #10b981, #059669);
-      color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;
+      color: #fff; border: none; padding: 14px; border-radius: 14px; font-weight: 800; font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 8px 25px rgba(16,185,129,0.35); transition: 0.2s;
     }
-    .btn-action-copy:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-copy-main:hover { opacity: 0.92; transform: translateY(-1px); }
+    #qrTarget {
+      margin-top: 18px; display: flex; justify-content: center; background: #fff;
+      padding: 12px; border-radius: 16px; width: fit-content; margin-left: auto; margin-right: auto;
+    }
 
-    /* Mockup Celular */
-    .phone-column { display: flex; flex-direction: column; align-items: center; }
-    .phone-outer {
-      width: 375px; height: 690px; background: #0c101c; border: 12px solid #1e293b;
-      border-radius: 46px; box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 50px rgba(139,92,246,0.25);
+    /* Columna Simulador Teléfono */
+    .phone-col { display: flex; flex-direction: column; align-items: center; }
+    .phone-top-bar {
+      width: 100%; max-width: 390px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+    }
+    .phone-label { font-size: 0.85rem; font-weight: 700; color: #cbd5e1; display: flex; align-items: center; gap: 8px; }
+    .dot-live { width: 8px; height: 8px; border-radius: 50%; background: #ec4899; box-shadow: 0 0 10px #ec4899; }
+    .btn-restart {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      color: #fff; font-size: 0.75rem; font-weight: 700; padding: 5px 12px; border-radius: 20px; cursor: pointer;
+    }
+    .btn-restart:hover { background: rgba(255,255,255,0.15); }
+
+    .theme-selector {
+      display: flex; gap: 6px; margin-bottom: 14px;
+    }
+    .theme-chip {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      color: #94a3b8; font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 14px; cursor: pointer;
+    }
+    .theme-chip.active { background: #ec4899; color: #fff; border-color: #ec4899; }
+
+    .phone-frame {
+      width: 380px; height: 720px; background: #000; border: 12px solid #1e293b;
+      border-radius: 50px; box-shadow: 0 30px 90px rgba(0,0,0,0.85), 0 0 60px rgba(139,92,246,0.25);
       position: relative; overflow: hidden; display: flex; flex-direction: column;
     }
-    .phone-notch {
-      width: 140px; height: 22px; background: #1e293b; border-bottom-left-radius: 14px;
-      border-bottom-right-radius: 14px; margin: 0 auto; z-index: 10;
+    .phone-notch-bar {
+      width: 140px; height: 22px; background: #1e293b; border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px; margin: 0 auto; z-index: 15;
     }
-    .phone-screen {
-      flex: 1; padding: 25px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;
-      background: radial-gradient(circle at top, #1e1b4b 0%, #07090e 70%); position: relative;
+    .phone-body {
+      flex: 1; padding: 30px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #07090e 75%);
+      position: relative; transition: background 0.3s;
     }
-    .modal-card {
-      width: 100%; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.12); border-radius: 26px; padding: 26px 20px;
-      text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-    }
-    .sim-close-btn {
-      position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #94a3b8;
-    }
-    .avatar-wrapper {
-      width: 90px; height: 90px; border-radius: 20px; margin: 0 auto 15px; padding: 3px;
-      background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4); box-shadow: 0 0 25px rgba(236,72,153,0.5);
-    }
-    .avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
-    .sim-h1 { font-size: 1.25rem; font-weight: 800; margin-bottom: 6px; }
-    .sim-p { font-size: 0.8rem; color: #94a3b8; line-height: 1.35; margin-bottom: 18px; }
 
-    .btn-ig-glow {
+    /* Modal emergente dentro del teléfono */
+    .phone-modal {
+      width: 100%; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 28px; padding: 28px 20px;
+      text-align: center; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.65);
+    }
+    .phone-x {
+      position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: #94a3b8;
+      transition: 0.25s; cursor: not-allowed;
+    }
+    .phone-x.ready {
+      background: #ef4444; border-color: #f87171; color: #fff; cursor: pointer; box-shadow: 0 0 15px rgba(239, 68, 68, 0.65);
+    }
+
+    .phone-avatar-box {
+      width: 130px; height: 130px; border-radius: 28px; margin: 0 auto 16px; padding: 4px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4); box-shadow: 0 0 30px rgba(236,72,153,0.5);
+    }
+    .phone-avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
+    
+    .phone-h1 { font-size: 1.35rem; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+    .phone-sub { font-size: 0.82rem; color: #94a3b8; line-height: 1.4; margin-bottom: 20px; }
+
+    .phone-btn-ig {
       background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      box-shadow: 0 5px 20px rgba(220,39,67,0.45); color: #fff; padding: 13px; border-radius: 14px;
-      font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
-      gap: 8px; text-decoration: none; margin-bottom: 10px;
+      box-shadow: 0 6px 22px rgba(220,39,67,0.45); color: #fff; padding: 14px; border-radius: 16px;
+      font-weight: 800; font-size: 0.92rem; display: flex; align-items: center; justify-content: center;
+      gap: 10px; text-decoration: none; margin-bottom: 10px; transition: transform 0.2s;
     }
-    .btn-tt-glow {
-      background: #000; border: 1px solid #334155; box-shadow: 0 5px 20px rgba(0,242,234,0.25);
-      color: #fff; padding: 13px; border-radius: 14px; font-weight: 700; font-size: 0.9rem;
-      display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; margin-bottom: 15px;
+    .phone-btn-tt {
+      background: #000; border: 1px solid #334155; box-shadow: 0 6px 22px rgba(0,242,234,0.25);
+      color: #fff; padding: 14px; border-radius: 16px; font-weight: 800; font-size: 0.92rem;
+      display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; margin-bottom: 16px;
     }
-    .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.08); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
-    .progress-inner { width: 60%; height: 100%; background: linear-gradient(90deg, #ec4899, #06b6d4); }
-    .btn-fake-wait {
-      width: 100%; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08); color: #64748b; font-size: 0.85rem; font-weight: 700;
+
+    .phone-progress-wrap {
+      width: 100%; height: 5px; background: rgba(255,255,255,0.08); border-radius: 10px; margin-bottom: 14px; overflow: hidden;
     }
-    #qrcode-box {
-      margin-top: 15px; display: flex; justify-content: center; background: #fff;
-      padding: 10px; border-radius: 12px; width: fit-content; margin-left: auto; margin-right: auto;
+    .phone-progress-fill { width: 100%; height: 100%; background: linear-gradient(90deg, #ec4899, #06b6d4); transition: width 1s linear; }
+
+    .phone-bottom-btn {
+      width: 100%; padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08); color: #64748b; font-size: 0.88rem; font-weight: 800;
+      transition: 0.25s; cursor: not-allowed;
+    }
+    .phone-bottom-btn.ready {
+      background: linear-gradient(135deg, #3b82f6, #6366f1); border-color: #60a5fa; color: #fff;
+      cursor: pointer; box-shadow: 0 8px 25px rgba(59,130,246,0.45);
     }
   </style>
 </head>
 <body>
-  <div class="ambient-bg"></div>
-  <div class="ambient-bg2"></div>
+  <div class="ambient-1"></div>
+  <div class="ambient-2"></div>
 
-  <div class="top-bar">
-    <div class="brand-title">
-      <div class="brand-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+  <div class="top-header">
+    <div class="brand-wrap">
+      <div class="brand-logo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
       <div>
-        <h1>Portal Puente <span class="badge-sub">Ultra Vibrante</span></h1>
-        <p style="font-size: 0.8rem; color: #94a3b8;">Configura el acceso para tus clientes y genera su código QR</p>
+        <h1>Portal Puente <span class="badge-neon">Ultra Vibrante</span></h1>
+        <p style="font-size: 0.8rem; color: #94a3b8;">Retén tus clientes 5s, muestra tu logo, redes dinámicas y personaliza tu mensaje al 100%.</p>
       </div>
     </div>
+    <div class="live-badge"><i class="fa-solid fa-bolt"></i> Editor en tiempo real</div>
   </div>
 
-  <div class="main-grid">
+  <div class="layout-grid">
+    <!-- PANEL IZQUIERDO -->
     <div>
-      <div class="card-box">
-        <div class="box-header">
-          <div class="box-header-left">
-            <div class="step-num">1</div>
-            <div class="box-title">Fotos & Redes Sociales</div>
+      <div class="glass-card">
+        <div class="card-head">
+          <div class="head-left">
+            <div class="step-circle">1</div>
+            <div class="head-title">Fotos, Logo & Textos al Cliente</div>
+          </div>
+          <div class="head-badge">Destino & Branding</div>
+        </div>
+
+        <div class="form-row">
+          <label class="label-tag"><i class="fa-solid fa-cloud-arrow-down"></i> Enlace de descarga de fotos (Drive, Dropbox, Pixieset, etc.)</label>
+          <input type="url" id="fieldTarget" class="input-box" placeholder="https://drive.google.com/drive/folders/ejemplo-fotos-evento" value="https://drive.google.com/">
+        </div>
+
+        <div class="form-row">
+          <div class="label-tag">
+            <span><i class="fa-solid fa-image"></i> Logo o Foto de Marca (opcional)</span>
+            <button type="button" class="btn-remove-logo" id="btnRemoveLogo" onclick="quitarLogo()"><i class="fa-regular fa-trash-can"></i> Quitar logo</button>
+          </div>
+          <div class="uploader-area">
+            <img id="thumbLogo" class="preview-thumb" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="Logo">
+            <label class="upload-btn-label">
+              <i class="fa-solid fa-arrow-up-from-bracket"></i> Subir imagen (PNG/JPG)
+              <input type="file" id="fileLogoInput" accept="image/*" style="display: none;" onchange="handleFileUpload(event)">
+            </label>
           </div>
         </div>
 
-        <div style="margin-bottom: 15px;">
-          <label class="field-label">Enlace de descarga de fotos (Drive, Dropbox, etc.)</label>
-          <input type="url" id="targetLink" class="custom-input" placeholder="https://drive.google.com/..." value="https://drive.google.com/">
+        <div class="form-row">
+          <label class="label-tag"><i class="fa-solid fa-heading"></i> Título Principal</label>
+          <input type="text" id="fieldTitle" class="input-box" value="¡Tus fotos en alta calidad están listas! 📸">
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
-          <div>
-            <label class="field-label">Usuario de Instagram</label>
-            <input type="text" id="igUser" class="custom-input" placeholder="ej: tu_estudio" value="rememberph">
+        <div class="form-row">
+          <div class="label-tag">
+            <span><i class="fa-regular fa-comment-dots"></i> Texto Secundario / Mensaje para el Cliente</span>
+            <span style="color: #38bdf8;">100% Personalizable</span>
           </div>
-          <div>
-            <label class="field-label">TikTok (opcional)</label>
-            <input type="text" id="ttUser" class="custom-input" placeholder="ej: tu_estudio">
-          </div>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-          <label class="field-label">Logo de tu Marca (URL de imagen)</label>
-          <input type="url" id="logoUrl" class="custom-input" placeholder="https://i.imgur.com/..." value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
-        </div>
-
-        <div style="margin-bottom: 15px;">
-          <label class="field-label">Título</label>
-          <input type="text" id="titleText" class="custom-input" value="¡Tus fotos en alta calidad están listas! 📸">
-        </div>
-
-        <div>
-          <label class="field-label">Mensaje personalizado</label>
-          <textarea id="subText" class="custom-textarea">Síguenos para no perderte el contenido exclusivo del evento y etiquetarte en tus fotos.</textarea>
-          <div class="templates-row">
-            <button type="button" class="tpl-btn" onclick="setMsg('¡Gracias por celebrar con nosotros! Síguenos para no perderte ningún recuerdo.')">🎉 Fiesta / Evento</button>
-            <button type="button" class="tpl-btn" onclick="setMsg('Un recuerdo inolvidable. Síguenos y comparte tu experiencia con nosotros.')">💍 Boda / Especial</button>
-            <button type="button" class="tpl-btn" onclick="setMsg('Tus retratos profesionales están listos para descargar en alta definición.')">📸 Retrato</button>
+          <textarea id="fieldSub" class="textarea-box">Síguenos en nuestras redes para ver todo el contenido del evento, promociones exclusivas y etiquetarte en tus mejores tomas.</textarea>
+          <div class="pills-row">
+            <button type="button" class="pill-item" onclick="setTemplate('¡Gracias por celebrar con nosotros! Síguenos para no perderte ningún recuerdo ni fotos adicionales.')">🎉 Fiesta / Evento</button>
+            <button type="button" class="pill-item" onclick="setTemplate('Un recuerdo inolvidable de este día tan especial. Síguenos y comparte tus favoritas con nosotros.')">💍 Boda / Especial</button>
+            <button type="button" class="pill-item" onclick="setTemplate('Tus retratos en alta definición ya están listos para guardar e imprimir con la máxima calidad.')">📸 Estudio & Retrato</button>
           </div>
         </div>
       </div>
 
-      <div class="card-box">
-        <div class="box-header">
-          <div class="box-header-left">
-            <div class="step-num" style="background: #10b981;">2</div>
-            <div class="box-title">Tu Enlace Limpio y Código QR</div>
+      <!-- SEGUNDA TARJETA: REDES -->
+      <div class="glass-card">
+        <div class="card-head">
+          <div class="head-left">
+            <div class="step-circle" style="background: #ec4899;">2</div>
+            <div class="head-title">Botones de Redes Inteligentes</div>
           </div>
         </div>
 
-        <div class="link-out-container">
-          <div id="cleanUrlDisplay" class="clean-url">Generando...</div>
-          <button type="button" class="btn-action-copy" onclick="copiarEnlace()">
-            <i class="fa-regular fa-copy"></i> Copiar Enlace Corto
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-row">
+            <label class="label-tag"><i class="fa-brands fa-instagram"></i> Instagram</label>
+            <input type="text" id="fieldIg" class="input-box" placeholder="ej: mifotografia_oficial" value="rememberph">
+          </div>
+          <div class="form-row">
+            <label class="label-tag"><i class="fa-brands fa-tiktok"></i> TikTok (opcional)</label>
+            <input type="text" id="fieldTt" class="input-box" placeholder="ej: tiktok.com/@mifotografia">
+          </div>
+        </div>
+      </div>
+
+      <!-- TERCERA TARJETA: ENLACE Y QR -->
+      <div class="glass-card">
+        <div class="card-head">
+          <div class="head-left">
+            <div class="step-circle green">3</div>
+            <div class="head-title">Tu Enlace & Código QR</div>
+          </div>
+          <div class="head-badge" style="color: #10b981; border-color: rgba(16,185,129,0.3);">Listo</div>
+        </div>
+
+        <div class="clean-box">
+          <label class="label-tag" style="color: #38bdf8;">Enlace final codificado para el QR:</label>
+          <div id="urlCleanDisplay" class="url-result">Generando enlace...</div>
+          <button type="button" class="btn-copy-main" onclick="copiarEnlace()">
+            <i class="fa-regular fa-copy"></i> Copiar Enlace
           </button>
-          <div id="qrcode-box"></div>
+          <div id="qrTarget"></div>
         </div>
       </div>
     </div>
 
-    <!-- MOCKUP CELULAR -->
-    <div class="phone-column">
-      <div class="phone-outer">
-        <div class="phone-notch"></div>
-        <div class="phone-screen">
-          <div class="modal-card">
-            <div class="sim-close-btn">5s</div>
-            
-            <div class="avatar-wrapper" id="simAvatarWrap">
-              <img id="simAvatar" class="avatar-img" src="" alt="Avatar">
+    <!-- PANEL DERECHO: CELULAR IDÉNTICO -->
+    <div class="phone-col">
+      <div class="phone-top-bar">
+        <div class="phone-label"><div class="dot-live"></div> SIMULADOR DE TELÉFONO</div>
+        <button type="button" class="btn-restart" onclick="reiniciarConteo()"><i class="fa-solid fa-rotate-right"></i> Reiniciar 5s</button>
+      </div>
+
+      <div class="theme-selector">
+        <div class="theme-chip active" onclick="setTheme('neon', this)">Neón</div>
+        <div class="theme-chip" onclick="setTheme('sunset', this)">Sunset</div>
+        <div class="theme-chip" onclick="setTheme('aurora', this)">Aurora</div>
+        <div class="theme-chip" onclick="setTheme('dark', this)">Dark Pro</div>
+      </div>
+
+      <div class="phone-frame">
+        <div class="phone-notch-bar"></div>
+        <div class="phone-body" id="phoneBody">
+          <div class="phone-modal">
+            <div class="phone-x" id="simX">5s</div>
+
+            <div class="phone-avatar-box" id="avatarBox">
+              <img id="simAvatarImg" class="phone-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="Avatar">
             </div>
 
-            <div id="simTitle" class="sim-h1"></div>
-            <div id="simSub" class="sim-p"></div>
+            <div id="simTitle" class="phone-h1"></div>
+            <div id="simSub" class="phone-sub"></div>
 
-            <div id="simIgBtn" class="btn-ig-glow">
+            <a id="simBtnIg" href="#" class="phone-btn-ig">
               <i class="fa-brands fa-instagram"></i> Seguir en Instagram
-            </div>
+            </a>
 
-            <div id="simTtBtn" class="btn-tt-glow" style="display: none;">
+            <a id="simBtnTt" href="#" class="phone-btn-tt" style="display: none;">
               <i class="fa-brands fa-tiktok"></i> Seguir en TikTok
+            </a>
+
+            <div class="phone-progress-wrap">
+              <div class="phone-progress-fill" id="simProgress"></div>
             </div>
 
-            <div class="progress-bar">
-              <div class="progress-inner"></div>
-            </div>
-
-            <button class="btn-fake-wait">Esperando 5s...</button>
+            <button class="phone-bottom-btn" id="simBottomBtn">Esperando 5s...</button>
           </div>
         </div>
       </div>
@@ -267,72 +382,136 @@
   </div>
 
   <script>
-    let qr = null;
+    let qrObj = null;
+    let timerId = null;
+    let currentSeconds = 5;
+    let currentLogoData = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300";
 
-    function setMsg(msg) {
-      document.getElementById('subText').value = msg;
-      render();
+    function setTemplate(txt) {
+      document.getElementById('fieldSub').value = txt;
+      actualizarTodo();
     }
 
-    function render() {
-      const target = document.getElementById('targetLink').value.trim();
-      const ig = document.getElementById('igUser').value.trim().replace('@', '');
-      const tt = document.getElementById('ttUser').value.trim().replace('@', '');
-      const logo = document.getElementById('logoUrl').value.trim();
-      const title = document.getElementById('titleText').value.trim();
-      const sub = document.getElementById('subText').value.trim();
+    function setTheme(t, el) {
+      document.querySelectorAll('.theme-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      const b = document.getElementById('phoneBody');
+      if (t === 'neon') b.style.background = 'radial-gradient(circle at 50% 20%, #1e1b4b 0%, #07090e 75%)';
+      if (t === 'sunset') b.style.background = 'radial-gradient(circle at 50% 20%, #831843 0%, #090d16 75%)';
+      if (t === 'aurora') b.style.background = 'radial-gradient(circle at 50% 20%, #064e3b 0%, #050811 75%)';
+      if (t === 'dark') b.style.background = '#0a0d14';
+    }
 
-      // Construcción del enlace limpio y corto
+    function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          currentLogoData = evt.target.result;
+          document.getElementById('thumbLogo').src = currentLogoData;
+          document.getElementById('thumbLogo').style.display = 'block';
+          actualizarTodo();
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function quitarLogo() {
+      currentLogoData = "";
+      document.getElementById('thumbLogo').style.display = 'none';
+      document.getElementById('fileLogoInput').value = "";
+      actualizarTodo();
+    }
+
+    function reiniciarConteo() {
+      clearInterval(timerId);
+      currentSeconds = 5;
+      const x = document.getElementById('simX');
+      const btn = document.getElementById('simBottomBtn');
+      const bar = document.getElementById('simProgress');
+
+      x.className = 'phone-x';
+      x.textContent = '5s';
+      btn.className = 'phone-bottom-btn';
+      btn.textContent = 'Esperando 5s...';
+      bar.style.width = '100%';
+
+      timerId = setInterval(() => {
+        currentSeconds--;
+        bar.style.width = ((currentSeconds) / 5 * 100) + '%';
+        if (currentSeconds > 0) {
+          x.textContent = currentSeconds + 's';
+          btn.textContent = `Esperando ${currentSeconds}s...`;
+        } else {
+          clearInterval(timerId);
+          x.textContent = '✕';
+          x.classList.add('ready');
+          btn.textContent = 'Ver mis fotos →';
+          btn.classList.add('ready');
+        }
+      }, 1000);
+    }
+
+    function actualizarTodo() {
+      const target = document.getElementById('fieldTarget').value.trim();
+      const ig = document.getElementById('fieldIg').value.trim().replace('@', '');
+      const tt = document.getElementById('fieldTt').value.trim().replace('@', '');
+      const title = document.getElementById('fieldTitle').value.trim();
+      const sub = document.getElementById('fieldSub').value.trim();
+
+      // Construcción URL limpia
       const base = window.location.origin + window.location.pathname.replace('index.html', '') + 'go.html';
-      const p = new URLSearchParams();
-      if (target) p.set('f', target);
-      if (ig) p.set('ig', ig);
-      if (tt) p.set('tt', tt);
-      if (logo) p.set('l', logo);
+      const params = new URLSearchParams();
+      if (target) params.set('f', target);
+      if (ig) params.set('ig', ig);
+      if (tt) params.set('tt', tt);
 
-      const urlFinal = base + '?' + p.toString();
-      document.getElementById('cleanUrlDisplay').textContent = urlFinal;
+      const finalUrl = base + '?' + params.toString();
+      document.getElementById('urlCleanDisplay').textContent = finalUrl;
 
       // QR
-      const qrBox = document.getElementById('qrcode-box');
+      const qrBox = document.getElementById('qrTarget');
       qrBox.innerHTML = '';
-      qr = new QRCode(qrBox, {
-        text: urlFinal,
-        width: 130,
-        height: 130,
+      qrObj = new QRCode(qrBox, {
+        text: finalUrl,
+        width: 140,
+        height: 140,
         colorDark: "#000000",
         colorLight: "#ffffff"
       });
 
-      // Actualizar Celular
+      // Actualizar vista del teléfono
       document.getElementById('simTitle').textContent = title;
       document.getElementById('simSub').textContent = sub;
 
-      const avatarWrap = document.getElementById('simAvatarWrap');
-      const avatarImg = document.getElementById('simAvatar');
-      if (logo) {
-        avatarImg.src = logo;
-        avatarWrap.style.display = 'block';
+      const avatarBox = document.getElementById('avatarBox');
+      const simAvatarImg = document.getElementById('simAvatarImg');
+      if (currentLogoData) {
+        simAvatarImg.src = currentLogoData;
+        avatarBox.style.display = 'block';
       } else {
-        avatarWrap.style.display = 'none';
+        avatarBox.style.display = 'none';
       }
 
-      const ttBtn = document.getElementById('simTtBtn');
+      const ttBtn = document.getElementById('simBtnTt');
       ttBtn.style.display = tt ? 'flex' : 'none';
     }
 
     function copiarEnlace() {
-      const link = document.getElementById('cleanUrlDisplay').textContent;
-      navigator.clipboard.writeText(link).then(() => {
-        const btn = document.querySelector('.btn-action-copy');
+      const url = document.getElementById('urlCleanDisplay').textContent;
+      navigator.clipboard.writeText(url).then(() => {
+        const btn = document.querySelector('.btn-copy-main');
         const old = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado con Éxito!';
         setTimeout(() => btn.innerHTML = old, 2000);
       });
     }
 
-    document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', render));
-    window.onload = render;
+    document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', actualizarTodo));
+    window.onload = function() {
+      actualizarTodo();
+      reiniciarConteo();
+    };
   </script>
 </body>
 </html>
