@@ -2,167 +2,229 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tus fotos están listas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Portal Fotográfico | Remember Photobooths</title>
+  
+  <meta property="og:title" content="Tus fotos están listas | Remember Photobooths">
+  <meta property="og:description" content="Descarga tu paquete de fotos oficiales del evento.">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+    
+    html, body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
     body {
       background: #07090e;
       color: #fff;
-      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: env(safe-area-inset-top, 20px) 16px env(safe-area-inset-bottom, 20px);
       position: relative;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
-    .glow-1 {
-      position: fixed; width: 360px; height: 360px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(236,72,153,0.3) 0%, transparent 70%);
-      top: -100px; left: -100px; filter: blur(50px); pointer-events: none;
+    .glow-top {
+      position: fixed; width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(236,72,153,0.28) 0%, transparent 70%);
+      top: -120px; left: -120px; filter: blur(50px); pointer-events: none;
     }
-    .glow-2 {
-      position: fixed; width: 360px; height: 360px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(6,182,212,0.25) 0%, transparent 70%);
-      bottom: -100px; right: -100px; filter: blur(50px); pointer-events: none;
+    .glow-bottom {
+      position: fixed; width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.22) 0%, transparent 70%);
+      bottom: -120px; right: -120px; filter: blur(50px); pointer-events: none;
     }
-    .card {
-      background: rgba(15, 23, 42, 0.8);
-      backdrop-filter: blur(25px);
+
+    .modal-container {
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 28px;
-      padding: 34px 22px;
+      border-radius: 30px;
+      padding: 32px 20px;
       max-width: 420px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.75);
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
-    .close-btn {
-      position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; border-radius: 50%;
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    .btn-close {
+      position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);
       color: #94a3b8; display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.85rem; cursor: not-allowed; transition: 0.25s;
+      font-weight: 800; font-size: 0.85rem; cursor: not-allowed; transition: 0.25s;
     }
-    .close-btn.unlocked {
+    .btn-close.unlocked {
       background: #ef4444; border-color: #f87171; color: #fff; cursor: pointer;
-      box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+      box-shadow: 0 0 18px rgba(239, 68, 68, 0.7);
     }
-    .avatar-wrap {
-      width: 95px; height: 95px; border-radius: 24px; margin: 0 auto 18px; padding: 3px;
-      background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4); box-shadow: 0 0 25px rgba(236,72,153,0.45);
+
+    .avatar-wrapper {
+      width: 110px; height: 110px; border-radius: 26px; margin: 0 auto 18px; padding: 3px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4); box-shadow: 0 0 30px rgba(236,72,153,0.45);
     }
-    .avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 21px; }
+    .avatar-image { width: 100%; height: 100%; object-fit: cover; border-radius: 23px; }
+
     h1 {
-      font-size: 1.45rem; font-weight: 800; margin-bottom: 8px;
+      font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; line-height: 1.3;
       background: linear-gradient(135deg, #fff 50%, #cbd5e1);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    p.sub { font-size: 0.9rem; color: #94a3b8; line-height: 1.4; margin-bottom: 22px; }
-    
-    .btn-ig {
+    p.subtitle-text { font-size: 0.88rem; color: #94a3b8; line-height: 1.45; margin-bottom: 22px; }
+
+    .social-btn-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px; }
+    .action-btn {
       display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 15px; border-radius: 16px; font-weight: 800; font-size: 0.95rem; text-decoration: none;
+      color: #fff; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .action-btn:active { transform: scale(0.97); }
+    .btn-instagram {
       background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      box-shadow: 0 6px 20px rgba(220,39,67,0.4); color: white; text-decoration: none;
-      padding: 14px; border-radius: 14px; font-weight: 700; font-size: 0.95rem; margin-bottom: 12px;
+      box-shadow: 0 6px 20px rgba(220,39,67,0.4);
     }
-    .btn-tt {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
+    .btn-tiktok {
       background: #000; border: 1px solid #334155; box-shadow: 0 6px 20px rgba(0,242,234,0.2);
-      color: white; text-decoration: none; padding: 14px; border-radius: 14px; font-weight: 700; font-size: 0.95rem; margin-bottom: 18px;
+    }
+    .btn-whatsapp {
+      background: #25d366; color: #052410; box-shadow: 0 6px 20px rgba(37,211,102,0.35);
     }
 
-    .bar-bg { width: 100%; height: 5px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
-    .bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ec4899, #06b6d4); transition: width 1s linear; }
+    .progress-bar-bg {
+      width: 100%; height: 5px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; margin-bottom: 14px;
+    }
+    .progress-bar-inner {
+      height: 100%; width: 0%; background: linear-gradient(90deg, #ec4899, #06b6d4); transition: width 1s linear;
+    }
 
-    .btn-photos {
-      width: 100%; padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05); color: #64748b; font-size: 0.95rem; font-weight: 700;
+    .btn-download-photos {
+      width: 100%; padding: 15px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05); color: #64748b; font-size: 0.95rem; font-weight: 800;
       cursor: not-allowed; transition: 0.25s;
     }
-    .btn-photos.unlocked {
+    .btn-download-photos.unlocked {
       background: linear-gradient(135deg, #3b82f6, #6366f1); border-color: #60a5fa; color: #fff;
-      cursor: pointer; box-shadow: 0 8px 25px rgba(59,130,246,0.4);
+      cursor: pointer; box-shadow: 0 8px 25px rgba(59,130,246,0.45);
+    }
+
+    .brand-signature {
+      margin-top: 24px; font-size: 0.75rem; color: #64748b; z-index: 2;
     }
   </style>
 </head>
 <body>
-  <div class="glow-1"></div>
-  <div class="glow-2"></div>
+  <div class="glow-top"></div>
+  <div class="glow-bottom"></div>
 
-  <div class="card">
-    <button id="closeBtn" class="close-btn">5s</button>
+  <div class="modal-container">
+    <button id="closeButton" class="btn-close" aria-label="Cerrar">5s</button>
 
-    <div id="avatarWrap" class="avatar-wrap" style="display: none;">
-      <img id="avatarImg" class="avatar-img" src="" alt="Logo">
+    <div class="avatar-wrapper">
+      <img id="avatarImage" class="avatar-image" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300" alt="Logo">
     </div>
 
-    <h1 id="titleDisplay">¡Tus fotos en alta calidad están listas! 📸</h1>
-    <p class="sub">Síguenos para revivir los mejores momentos del evento y etiquetarte en tus fotos.</p>
+    <h1>¡Tus fotos en alta calidad están listas! 📸</h1>
+    <p class="subtitle-text">Síguenos para revivir los mejores momentos del evento y etiquetarte en tus fotos.</p>
 
-    <a id="igLink" href="#" target="_blank" class="btn-ig">
-      <i class="fa-brands fa-instagram"></i> Seguir en Instagram
-    </a>
+    <div id="socialButtonsContainer" class="social-btn-stack"></div>
 
-    <a id="ttLink" href="#" target="_blank" class="btn-tt" style="display: none;">
-      <i class="fa-brands fa-tiktok"></i> Seguir en TikTok
-    </a>
-
-    <div class="bar-bg">
-      <div id="barFill" class="bar-fill"></div>
+    <div class="progress-bar-bg">
+      <div id="progressBarFill" class="progress-bar-inner"></div>
     </div>
 
-    <button id="photosBtn" class="btn-photos">Preparando fotos (5s)...</button>
+    <button id="downloadButton" class="btn-download-photos">
+      Preparando fotos (<span id="secondsLeftDisplay">5</span>s)...
+    </button>
+  </div>
+
+  <div class="brand-signature">
+    Impulsado por Remember Photobooths ✨
   </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const targetUrl = params.get('f') || 'https://instagram.com';
-    const igUser = params.get('ig') || 'rememberph';
-    const ttUser = params.get('tt');
-    const logoUrl = params.get('l');
+    const urlParams = new URLSearchParams(window.location.search);
+    const destinationUrl = urlParams.get('f') || 'https://instagram.com';
+    const waitTime = parseInt(urlParams.get('t')) || 5;
 
-    document.getElementById('igLink').href = `https://instagram.com/${igUser}`;
+    const igHandle = urlParams.get('ig');
+    const ttHandle = urlParams.get('tt');
+    const waNumber = urlParams.get('wa');
 
-    if (ttUser) {
-      const tt = document.getElementById('ttLink');
-      tt.href = `https://tiktok.com/@${ttUser}`;
-      tt.style.display = 'flex';
+    const socialContainer = document.getElementById('socialButtonsContainer');
+
+    if (igHandle) {
+      const a = document.createElement('a');
+      a.className = 'action-btn btn-instagram';
+      a.target = '_blank';
+      a.href = `https://instagram.com/${igHandle.replace('@', '')}`;
+      a.innerHTML = `<i class="fa-brands fa-instagram"></i> Seguir en Instagram`;
+      socialContainer.appendChild(a);
     }
 
-    if (logoUrl) {
-      document.getElementById('avatarImg').src = logoUrl;
-      document.getElementById('avatarWrap').style.display = 'block';
+    if (ttHandle) {
+      const a = document.createElement('a');
+      a.className = 'action-btn btn-tiktok';
+      a.target = '_blank';
+      a.href = `https://tiktok.com/@${ttHandle.replace('@', '')}`;
+      a.innerHTML = `<i class="fa-brands fa-tiktok"></i> Seguir en TikTok`;
+      socialContainer.appendChild(a);
     }
 
-    let timeLeft = 5;
-    const closeBtn = document.getElementById('closeBtn');
-    const photosBtn = document.getElementById('photosBtn');
-    const barFill = document.getElementById('barFill');
-
-    function irAFotos() {
-      window.location.href = targetUrl;
+    if (waNumber) {
+      const cleanWa = waNumber.replace(/\D/g, '');
+      const a = document.createElement('a');
+      a.className = 'action-btn btn-whatsapp';
+      a.target = '_blank';
+      a.href = `https://wa.me/${cleanWa}`;
+      a.innerHTML = `<i class="fa-brands fa-whatsapp"></i> Chatear en WhatsApp`;
+      socialContainer.appendChild(a);
     }
 
-    const timer = setInterval(() => {
-      timeLeft--;
-      barFill.style.width = ((5 - timeLeft) / 5 * 100) + '%';
+    // Si no se incluyó ninguna red, sugerimos la de la marca por defecto
+    if (!igHandle && !ttHandle && !waNumber) {
+      const a = document.createElement('a');
+      a.className = 'action-btn btn-instagram';
+      a.target = '_blank';
+      a.href = `https://instagram.com`;
+      a.innerHTML = `<i class="fa-brands fa-instagram"></i> Seguir en Instagram`;
+      socialContainer.appendChild(a);
+    }
 
-      if (timeLeft > 0) {
-        closeBtn.textContent = timeLeft + 's';
-        photosBtn.textContent = `Preparando fotos (${timeLeft}s)...`;
+    // Conteo cautivo
+    let secondsRemaining = waitTime;
+    const closeBtn = document.getElementById('closeButton');
+    const downloadBtn = document.getElementById('downloadButton');
+    const secondsDisplay = document.getElementById('secondsLeftDisplay');
+    const progressBar = document.getElementById('progressBarFill');
+
+    function redirigirAFotos() {
+      window.location.href = destinationUrl;
+    }
+
+    closeBtn.textContent = `${secondsRemaining}s`;
+    secondsDisplay.textContent = secondsRemaining;
+
+    const intervalTimer = setInterval(() => {
+      secondsRemaining--;
+      progressBar.style.width = ((waitTime - secondsRemaining) / waitTime * 100) + '%';
+
+      if (secondsRemaining > 0) {
+        closeBtn.textContent = `${secondsRemaining}s`;
+        secondsDisplay.textContent = secondsRemaining;
       } else {
-        clearInterval(timer);
+        clearInterval(intervalTimer);
         closeBtn.textContent = '✕';
         closeBtn.classList.add('unlocked');
-        closeBtn.onclick = irAFotos;
+        closeBtn.onclick = redirigirAFotos;
 
-        photosBtn.textContent = 'Ver mis fotos →';
-        photosBtn.classList.add('unlocked');
-        photosBtn.onclick = irAFotos;
+        downloadBtn.textContent = 'Ver mis fotos →';
+        downloadBtn.classList.add('unlocked');
+        downloadBtn.onclick = redirigirAFotos;
       }
     }, 1000);
   </script>
