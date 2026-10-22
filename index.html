@@ -26,15 +26,27 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+
+    /* Luces Neón Animadas */
+    @keyframes floatGlow1 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.15); }
+    }
+    @keyframes floatGlow2 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(-50px, -30px) scale(1.2); }
+    }
     .ambient-1 {
-      position: fixed; width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(236,72,153,0.16) 0%, rgba(139,92,246,0.08) 45%, transparent 70%);
+      position: fixed; width: 650px; height: 650px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(236,72,153,0.22) 0%, rgba(139,92,246,0.12) 45%, transparent 70%);
       top: -180px; left: -180px; filter: blur(90px); pointer-events: none; z-index: 0;
+      animation: floatGlow1 12s ease-in-out infinite;
     }
     .ambient-2 {
-      position: fixed; width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(6,182,212,0.14) 0%, transparent 70%);
+      position: fixed; width: 650px; height: 650px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.2) 0%, rgba(59,130,246,0.1) 45%, transparent 70%);
       bottom: -180px; right: -180px; filter: blur(90px); pointer-events: none; z-index: 0;
+      animation: floatGlow2 14s ease-in-out infinite;
     }
 
     .header-bar {
@@ -110,7 +122,7 @@
       padding: 2px; background: linear-gradient(135deg, #ec4899, #8b5cf6); flex-shrink: 0;
     }
     .upload-action-box { display: flex; flex-direction: column; gap: 8px; flex: 1; }
-    .upload-top-row { display: flex; gap: 10px; align-items: center; }
+    .upload-top-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
     .btn-upload-file {
       background: linear-gradient(135deg, #6366f1, #8b5cf6);
       color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.85rem; font-weight: 700;
@@ -137,7 +149,7 @@
       box-shadow: 0 0 15px rgba(236,72,153,0.4);
     }
 
-    /* Redes Dinamicas */
+    /* Redes Dinámicas Estables (Sin perder foco) */
     .btn-add-social {
       background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3);
       color: #f472b6; font-size: 0.8rem; font-weight: 700; padding: 6px 14px; border-radius: 16px;
@@ -147,7 +159,7 @@
     .social-row-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
     .social-row-badge {
       padding: 10px 14px; border-radius: 12px; background: #0c101c; border: 1px solid #1e293b;
-      display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; min-width: 120px;
+      display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; min-width: 125px;
     }
     .social-input-flex { flex: 1; }
     .btn-remove-social {
@@ -157,7 +169,7 @@
     }
     .btn-remove-social:hover { background: #ef4444; color: #fff; }
 
-    /* Cuadro informativo detección automática */
+    /* Cuadro de detección */
     .info-detection-box {
       background: rgba(88, 28, 135, 0.2); border: 1px solid rgba(168, 85, 247, 0.25);
       border-radius: 14px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; margin-top: 15px;
@@ -207,7 +219,7 @@
     }
     .btn-download-qr:hover { color: #6ee7b7; text-decoration: underline; }
 
-    /* Columna Teléfono */
+    /* Simulador de Teléfono */
     .phone-column-box { display: flex; flex-direction: column; align-items: center; }
     .phone-control-bar {
       width: 100%; max-width: 380px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
@@ -244,7 +256,7 @@
       position: relative; transition: background 0.3s;
     }
 
-    /* Modal Celular */
+    /* Modal emergente */
     .phone-popup {
       width: 100%; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
@@ -264,7 +276,8 @@
     .phone-avatar-holder {
       width: 120px; height: 120px; border-radius: 26px; margin: 0 auto 16px; padding: 4px;
       background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4); box-shadow: 0 0 30px rgba(236,72,153,0.5);
-      position: relative;
+      position: relative; display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
     }
     .phone-avatar-pic { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; }
 
@@ -307,7 +320,6 @@
   <div class="ambient-1"></div>
   <div class="ambient-2"></div>
 
-  <!-- CABECERA PRINCIPAL -->
   <div class="header-bar">
     <div class="brand-group">
       <div class="brand-icon-box"><i class="fa-solid fa-camera-retro"></i></div>
@@ -320,9 +332,9 @@
   </div>
 
   <div class="main-wrapper">
-    <!-- PANEL DE CONFIGURACIÓN -->
+    <!-- PANEL IZQUIERDO -->
     <div>
-      <!-- MÓDULO 1: FOTOS & BRANDING -->
+      <!-- MÓDULO 1 -->
       <div class="module-card">
         <div class="module-head">
           <div class="module-head-left">
@@ -334,7 +346,7 @@
 
         <div class="form-group">
           <label class="form-label"><i class="fa-solid fa-cloud-arrow-down"></i> Enlace de descarga de fotos (Drive, Dropbox, Pixieset, etc.)</label>
-          <input type="url" id="fieldTarget" class="custom-input" placeholder="Pega aquí el enlace de la carpeta del cliente (Google Drive, Dropbox, Pixieset, etc.)">
+          <input type="url" id="fieldTarget" class="custom-input" placeholder="Pega aquí el enlace de la carpeta del cliente (Google Drive, Dropbox, Pixieset, etc.)" oninput="refrescarTodo()">
         </div>
 
         <div class="form-group">
@@ -343,7 +355,7 @@
             <button type="button" class="btn-delete-logo" onclick="quitarLogo()"><i class="fa-regular fa-trash-can"></i> Quitar logo</button>
           </div>
           <div class="uploader-bar">
-            <img id="thumbLogo" class="uploader-preview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="Logo">
+            <img id="thumbLogo" class="uploader-preview" src="" alt="Logo" style="display: none;">
             <div class="upload-action-box">
               <div class="upload-top-row">
                 <label class="btn-upload-file">
@@ -359,7 +371,7 @@
 
         <div class="form-group">
           <label class="form-label"><i class="fa-solid fa-heading"></i> Título Principal</label>
-          <input type="text" id="fieldTitle" class="custom-input" value="¡Tus fotos en alta calidad están listas! 📸">
+          <input type="text" id="fieldTitle" class="custom-input" value="¡Tus fotos en alta calidad están listas! 📸" oninput="refrescarTodo()">
         </div>
 
         <div class="form-group">
@@ -367,7 +379,7 @@
             <span><i class="fa-regular fa-comment-dots"></i> Texto Secundario / Mensaje para el Cliente</span>
             <span style="color: #38bdf8;">100% Personalizable</span>
           </div>
-          <textarea id="fieldSub" class="custom-textarea">Síguenos en nuestras redes para ver todo el contenido del evento, promociones exclusivas y etiquetarte en tus mejores tomas.</textarea>
+          <textarea id="fieldSub" class="custom-textarea" oninput="refrescarTodo()">Síguenos en nuestras redes para ver todo el contenido del evento, promociones exclusivas y etiquetarte en tus mejores tomas.</textarea>
           <div class="pills-group">
             <button type="button" class="pill-btn" onclick="setPlantilla('¡Gracias por celebrar con nosotros! Síguenos para no perderte ningún recuerdo ni fotos adicionales.')">🎉 Fiesta / Evento</button>
             <button type="button" class="pill-btn" onclick="setPlantilla('Un recuerdo inolvidable de este día tan especial. Síguenos y comparte tus favoritas con nosotros.')">💍 Boda / Especial</button>
@@ -375,7 +387,6 @@
           </div>
         </div>
 
-        <!-- TIEMPO DE ESPERA CAUTIVA -->
         <div class="form-group">
           <label class="form-label"><i class="fa-solid fa-stopwatch"></i> Tiempo de espera cautiva</label>
           <div class="slider-container">
@@ -385,7 +396,7 @@
         </div>
       </div>
 
-      <!-- MÓDULO 2: REDES SOCIALES INTELIGENTES -->
+      <!-- MÓDULO 2: REDES SOCIALES SIN RE-RENDER INTRUSIVO -->
       <div class="module-card">
         <div class="module-head">
           <div class="module-head-left">
@@ -400,7 +411,6 @@
 
         <div id="socialListGroup"></div>
 
-        <!-- Caja de detección automática -->
         <div class="info-detection-box">
           <div class="info-detection-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
           <div class="info-detection-text">
@@ -409,7 +419,7 @@
         </div>
       </div>
 
-      <!-- MÓDULO 3: ENLACE & CÓDIGO QR -->
+      <!-- MÓDULO 3: ENLACE COMPACTO & QR -->
       <div class="module-card">
         <div class="module-head">
           <div class="module-head-left">
@@ -449,7 +459,7 @@
       </div>
     </div>
 
-    <!-- PANEL DERECHO: VISTA PREVIA DEL CELULAR -->
+    <!-- PANEL DERECHO: SIMULADOR -->
     <div class="phone-column-box">
       <div class="phone-control-bar">
         <div class="phone-control-title"><div class="dot-live-status"></div> SIMULADOR DE TELÉFONO</div>
@@ -469,15 +479,28 @@
           <div class="phone-popup">
             <div class="phone-x-button" id="phoneX">5s</div>
 
-            <!-- Avatar / Logo -->
+            <!-- Avatar Vintage / Logo -->
             <div class="phone-avatar-holder" id="phoneAvatarWrapper">
-              <img id="phoneAvatarImg" class="phone-avatar-pic" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="Avatar">
+              <img id="phoneAvatarImg" class="phone-avatar-pic" src="" alt="Avatar" style="display: none;">
+              <!-- Logo Fallback SVG Neón Retro -->
+              <svg id="phoneAvatarSvg" viewBox="0 0 100 100" style="width: 70px; height: 70px;">
+                <defs>
+                  <linearGradient id="neonCamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ec4899" />
+                    <stop offset="100%" stop-color="#06b6d4" />
+                  </linearGradient>
+                </defs>
+                <rect x="15" y="28" width="70" height="52" rx="14" fill="none" stroke="url(#neonCamGrad)" stroke-width="6" />
+                <path d="M35 28 L42 18 L58 18 L65 28 Z" fill="none" stroke="url(#neonCamGrad)" stroke-width="5" stroke-linejoin="round" />
+                <circle cx="50" cy="54" r="16" fill="none" stroke="url(#neonCamGrad)" stroke-width="6" />
+                <circle cx="50" cy="54" r="7" fill="url(#neonCamGrad)" />
+                <circle cx="70" cy="38" r="3" fill="#ec4899" />
+              </svg>
             </div>
 
             <div id="phoneTitle" class="phone-title-txt"></div>
             <div id="phoneSub" class="phone-sub-txt"></div>
 
-            <!-- Botones de Redes -->
             <div class="phone-buttons-stack" id="phoneButtonsStack"></div>
 
             <div class="phone-timer-bar">
@@ -500,7 +523,7 @@
     let timerCountdown = null;
     let waitSeconds = 5;
     let currentSecondsLeft = 5;
-    let logoDataUrl = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300";
+    let logoDataUrl = localStorage.getItem('rp_custom_logo') || "";
 
     let socialNetworks = [
       { id: 1, type: 'instagram', value: '' },
@@ -535,6 +558,11 @@
         const reader = new FileReader();
         reader.onload = function(evt) {
           logoDataUrl = evt.target.result;
+          try {
+            localStorage.setItem('rp_custom_logo', logoDataUrl);
+          } catch(err) {
+            console.warn('Logo muy pesado para localStorage');
+          }
           document.getElementById('thumbLogo').src = logoDataUrl;
           document.getElementById('thumbLogo').style.display = 'block';
           document.getElementById('fieldLogoUrl').value = '';
@@ -545,16 +573,19 @@
     }
 
     function manualLogoUrl(val) {
-      if (val.trim()) {
-        logoDataUrl = val.trim();
+      logoDataUrl = val.trim();
+      if (logoDataUrl) {
         document.getElementById('thumbLogo').src = logoDataUrl;
         document.getElementById('thumbLogo').style.display = 'block';
+      } else {
+        document.getElementById('thumbLogo').style.display = 'none';
       }
       refrescarTodo();
     }
 
     function quitarLogo() {
       logoDataUrl = "";
+      localStorage.removeItem('rp_custom_logo');
       document.getElementById('thumbLogo').style.display = 'none';
       document.getElementById('fileInput').value = "";
       document.getElementById('fieldLogoUrl').value = "";
@@ -564,54 +595,73 @@
     function agregarRedVacia() {
       const newId = Date.now();
       socialNetworks.push({ id: newId, type: 'instagram', value: '' });
-      renderizarCamposRedes();
+      crearFilaRed(socialNetworks[socialNetworks.length - 1]);
       refrescarTodo();
     }
 
     function eliminarRed(id) {
       socialNetworks = socialNetworks.filter(item => item.id !== id);
-      renderizarCamposRedes();
+      const row = document.getElementById(`social-row-${id}`);
+      if (row) row.remove();
       refrescarTodo();
     }
 
-    function actualizarValorRed(id, val) {
+    // Actualización de red sin reconstruir todo el DOM (evita que te expulse de la casilla)
+    function onInputRed(id, val, inputElem) {
       const net = socialNetworks.find(n => n.id === id);
-      if (net) {
-        net.value = val;
-        const v = val.toLowerCase();
-        if (v.includes('tiktok.com') || v.includes('tiktok')) net.type = 'tiktok';
-        else if (v.includes('wa.me') || v.includes('whatsapp') || /^[0-9+ ]{8,}$/.test(v)) net.type = 'whatsapp';
-        else if (v.includes('facebook.com')) net.type = 'facebook';
-        else net.type = 'instagram';
+      if (!net) return;
+      net.value = val;
+
+      const v = val.toLowerCase();
+      let nuevoTipo = 'instagram';
+      let icon = 'fa-brands fa-instagram';
+      let label = 'Instagram';
+
+      if (v.includes('tiktok.com') || v.includes('tiktok')) {
+        nuevoTipo = 'tiktok'; icon = 'fa-brands fa-tiktok'; label = 'TikTok';
+      } else if (v.includes('wa.me') || v.includes('whatsapp') || /^[0-9+ ]{8,}$/.test(v)) {
+        nuevoTipo = 'whatsapp'; icon = 'fa-brands fa-whatsapp'; label = 'WhatsApp';
+      } else if (v.includes('facebook.com')) {
+        nuevoTipo = 'facebook'; icon = 'fa-brands fa-facebook'; label = 'Facebook';
       }
-      renderizarCamposRedes();
+
+      net.type = nuevoTipo;
+      const badge = document.getElementById(`badge-${id}`);
+      if (badge) {
+        badge.innerHTML = `<i class="${icon}"></i> ${label}`;
+      }
+
       refrescarTodo();
     }
 
-    function renderizarCamposRedes() {
+    function crearFilaRed(item) {
+      const cont = document.getElementById('socialListGroup');
+      const row = document.createElement('div');
+      row.className = 'social-row-item';
+      row.id = `social-row-${item.id}`;
+
+      let iconClass = 'fa-brands fa-instagram';
+      let labelName = 'Instagram';
+      let ph = 'Usuario (ej: rememberph.co)';
+
+      if (item.type === 'tiktok') { iconClass = 'fa-brands fa-tiktok'; labelName = 'TikTok'; ph = 'tiktok.com/@mifotografia'; }
+      if (item.type === 'whatsapp') { iconClass = 'fa-brands fa-whatsapp'; labelName = 'WhatsApp'; ph = '573001234567'; }
+      if (item.type === 'facebook') { iconClass = 'fa-brands fa-facebook'; labelName = 'Facebook'; ph = 'facebook.com/mifotografia'; }
+
+      row.innerHTML = `
+        <div class="social-row-badge" id="badge-${item.id}"><i class="${iconClass}"></i> ${labelName}</div>
+        <div class="social-input-flex">
+          <input type="text" class="custom-input" placeholder="${ph}" value="${item.value}" oninput="onInputRed(${item.id}, this.value, this)">
+        </div>
+        <button type="button" class="btn-remove-social" onclick="eliminarRed(${item.id})"><i class="fa-regular fa-trash-can"></i></button>
+      `;
+      cont.appendChild(row);
+    }
+
+    function inicializarFilasRedes() {
       const cont = document.getElementById('socialListGroup');
       cont.innerHTML = '';
-
-      socialNetworks.forEach(item => {
-        const row = document.createElement('div');
-        row.className = 'social-row-item';
-
-        let iconClass = 'fa-brands fa-instagram';
-        let labelName = 'Instagram';
-        let ph = 'mifotografia_oficial';
-        if (item.type === 'tiktok') { iconClass = 'fa-brands fa-tiktok'; labelName = 'TikTok'; ph = 'tiktok.com/@mifotografia'; }
-        if (item.type === 'whatsapp') { iconClass = 'fa-brands fa-whatsapp'; labelName = 'WhatsApp'; ph = '573001234567'; }
-        if (item.type === 'facebook') { iconClass = 'fa-brands fa-facebook'; labelName = 'Facebook'; ph = 'facebook.com/mifotografia'; }
-
-        row.innerHTML = `
-          <div class="social-row-badge"><i class="${iconClass}"></i> ${labelName}</div>
-          <div class="social-input-flex">
-            <input type="text" class="custom-input" placeholder="${ph}" value="${item.value}" oninput="actualizarValorRed(${item.id}, this.value)">
-          </div>
-          <button type="button" class="btn-remove-social" onclick="eliminarRed(${item.id})"><i class="fa-regular fa-trash-can"></i></button>
-        `;
-        cont.appendChild(row);
-      });
+      socialNetworks.forEach(item => crearFilaRed(item));
     }
 
     function reiniciarSimulacion() {
@@ -643,6 +693,15 @@
       }, 1000);
     }
 
+    // Empaque seguro en base64 para acortar links largos de fotoshare o drive
+    function empaquetarUrl(url) {
+      try {
+        return btoa(unescape(encodeURIComponent(url))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+      } catch (e) {
+        return encodeURIComponent(url);
+      }
+    }
+
     function refrescarTodo() {
       const target = document.getElementById('fieldTarget').value.trim();
       const title = document.getElementById('fieldTitle').value.trim();
@@ -651,8 +710,16 @@
       const base = window.location.origin + window.location.pathname.replace('index.html', '') + 'go.html';
       const p = new URLSearchParams();
 
-      if (target) p.set('f', target);
+      if (target) {
+        // Se usa parámetro comprimido corto b64
+        p.set('b', empaquetarUrl(target));
+      }
       if (waitSeconds !== 5) p.set('t', waitSeconds);
+
+      // Si la URL del logo es un enlace web normal, se envía limpio
+      if (logoDataUrl && logoDataUrl.startsWith('http')) {
+        p.set('l', logoDataUrl);
+      }
 
       socialNetworks.forEach(net => {
         const val = net.value.trim().replace('@', '');
@@ -666,7 +733,7 @@
       const finalUrl = base + '?' + p.toString();
       document.getElementById('finalUrlText').textContent = finalUrl;
 
-      // QR Code
+      // Código QR Compacto
       const qrDiv = document.getElementById('qrCodeTarget');
       qrDiv.innerHTML = '';
       qrInstance = new QRCode(qrDiv, {
@@ -674,21 +741,23 @@
         width: 125,
         height: 125,
         colorDark: "#000000",
-        colorLight: "#ffffff"
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.M
       });
 
-      // Teléfono Mockup
+      // Vista del Teléfono
       document.getElementById('phoneTitle').textContent = title || '¡Tus fotos están listas!';
       document.getElementById('phoneSub').textContent = sub;
 
-      const avatarWrap = document.getElementById('phoneAvatarWrapper');
       const avatarImg = document.getElementById('phoneAvatarImg');
+      const avatarSvg = document.getElementById('phoneAvatarSvg');
       if (logoDataUrl) {
         avatarImg.src = logoDataUrl;
-        avatarWrap.style.display = 'block';
+        avatarImg.style.display = 'block';
+        avatarSvg.style.display = 'none';
       } else {
-        avatarImg.src = 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300';
-        avatarWrap.style.display = 'block';
+        avatarImg.style.display = 'none';
+        avatarSvg.style.display = 'block';
       }
 
       // Renderizar botones dentro del teléfono
@@ -737,16 +806,18 @@
       const img = document.querySelector('#qrCodeTarget img');
       if (img) {
         const a = document.createElement('a');
-        a.download = 'codigo-qr-fotos.png';
+        a.download = 'codigo-qr-remember-fotos.png';
         a.href = img.src;
         a.click();
       }
     }
 
-    document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', refrescarTodo));
-
     window.onload = function() {
-      renderizarCamposRedes();
+      if (logoDataUrl) {
+        document.getElementById('thumbLogo').src = logoDataUrl;
+        document.getElementById('thumbLogo').style.display = 'block';
+      }
+      inicializarFilasRedes();
       refrescarTodo();
       reiniciarSimulacion();
     };
