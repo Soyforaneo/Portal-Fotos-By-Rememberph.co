@@ -115,6 +115,7 @@
     .brand-signature {
       margin-top: 24px; font-size: 0.75rem; color: #64748b; z-index: 2;
     }
+    .brand-signature a { color: #f472b6; text-decoration: none; font-weight: 700; }
   </style>
 </head>
 <body>
@@ -143,12 +144,12 @@
   </div>
 
   <div class="brand-signature">
-    Impulsado por Remember Photobooths ✨
+    Impulsado con calidad por <a href="https://www.instagram.com/rememberph.co/" target="_blank">Remember Photobooths</a> ✨
   </div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const destinationUrl = urlParams.get('f') || 'https://instagram.com';
+    const destinationUrl = urlParams.get('f') || 'https://www.instagram.com/rememberph.co/';
     const waitTime = parseInt(urlParams.get('t')) || 5;
 
     const igHandle = urlParams.get('ig');
@@ -185,17 +186,15 @@
       socialContainer.appendChild(a);
     }
 
-    // Si no se incluyó ninguna red, sugerimos la de la marca por defecto
     if (!igHandle && !ttHandle && !waNumber) {
       const a = document.createElement('a');
       a.className = 'action-btn btn-instagram';
       a.target = '_blank';
-      a.href = `https://instagram.com`;
+      a.href = `https://www.instagram.com/rememberph.co/`;
       a.innerHTML = `<i class="fa-brands fa-instagram"></i> Seguir en Instagram`;
       socialContainer.appendChild(a);
     }
 
-    // Conteo cautivo
     let secondsRemaining = waitTime;
     const closeBtn = document.getElementById('closeButton');
     const downloadBtn = document.getElementById('downloadButton');
