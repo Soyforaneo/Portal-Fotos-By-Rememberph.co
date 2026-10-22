@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Portal Fotográfico | Remember Photobooths</title>
   
-  <!-- Metadata para WhatsApp / Redes Sociales -->
   <meta property="og:title" content="Portal Fotográfico | Recuerdos del Evento">
   <meta property="og:description" content="Accede a tu galería exclusiva de fotos en alta definición.">
   <meta property="og:type" content="website">
@@ -104,16 +103,18 @@
     .custom-input:focus, .custom-textarea:focus { border-color: #ec4899; box-shadow: 0 0 18px rgba(236,72,153,0.3); }
     .custom-textarea { resize: vertical; min-height: 70px; }
 
-    /* Uploader */
+    /* Uploader Híbrido */
     .uploader-bar { display: flex; gap: 14px; align-items: center; margin-top: 6px; }
     .uploader-preview {
       width: 60px; height: 60px; border-radius: 16px; object-fit: cover;
       padding: 2px; background: linear-gradient(135deg, #ec4899, #8b5cf6); flex-shrink: 0;
     }
+    .upload-action-box { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .upload-top-row { display: flex; gap: 10px; align-items: center; }
     .btn-upload-file {
       background: linear-gradient(135deg, #6366f1, #8b5cf6);
       color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.85rem; font-weight: 700;
-      cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s; white-space: nowrap;
     }
     .btn-delete-logo {
       background: none; border: none; color: #ef4444; font-size: 0.8rem; font-weight: 700;
@@ -128,12 +129,8 @@
     .pill-btn:hover { background: #ec4899; color: #fff; border-color: #ec4899; }
 
     /* Slider Cautivo */
-    .slider-container {
-      display: flex; align-items: center; gap: 15px; margin-top: 8px;
-    }
-    .slider-range {
-      flex: 1; accent-color: #ec4899; height: 6px; border-radius: 5px; cursor: pointer;
-    }
+    .slider-container { display: flex; align-items: center; gap: 15px; margin-top: 8px; }
+    .slider-range { flex: 1; accent-color: #ec4899; height: 6px; border-radius: 5px; cursor: pointer; }
     .slider-indicator {
       background: #ec4899; color: #fff; font-weight: 800; font-size: 0.8rem;
       padding: 4px 12px; border-radius: 12px; min-width: 90px; text-align: center;
@@ -147,12 +144,10 @@
       cursor: pointer; display: flex; align-items: center; gap: 6px; transition: 0.2s;
     }
     .btn-add-social:hover { background: #ec4899; color: #fff; }
-    .social-row-item {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
-    }
-    .social-row-icon {
-      width: 44px; height: 44px; border-radius: 12px; background: #0c101c; border: 1px solid #1e293b;
-      display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    .social-row-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .social-row-badge {
+      padding: 10px 14px; border-radius: 12px; background: #0c101c; border: 1px solid #1e293b;
+      display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; min-width: 120px;
     }
     .social-input-flex { flex: 1; }
     .btn-remove-social {
@@ -162,34 +157,55 @@
     }
     .btn-remove-social:hover { background: #ef4444; color: #fff; }
 
-    /* Enlace y QR */
+    /* Cuadro informativo detección automática */
+    .info-detection-box {
+      background: rgba(88, 28, 135, 0.2); border: 1px solid rgba(168, 85, 247, 0.25);
+      border-radius: 14px; padding: 14px; display: flex; align-items: flex-start; gap: 12px; margin-top: 15px;
+    }
+    .info-detection-icon {
+      width: 28px; height: 28px; border-radius: 8px; background: rgba(168, 85, 247, 0.3);
+      display: flex; align-items: center; justify-content: center; color: #d8b4fe; font-size: 0.85rem; flex-shrink: 0;
+    }
+    .info-detection-text { font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; }
+
+    /* Módulo 3: Enlace & QR Horizontal */
     .link-result-card {
       background: #060911; border: 1px dashed rgba(16,185,129,0.45); border-radius: 18px; padding: 18px; margin-top: 10px;
     }
+    .link-input-row { display: flex; gap: 10px; margin-bottom: 20px; }
+    @media (max-width: 650px) { .link-input-row { flex-direction: column; } }
     .url-display-text {
-      font-family: monospace; font-size: 0.84rem; color: #38bdf8; word-break: break-all;
-      background: #03060a; padding: 12px; border-radius: 12px; border: 1px solid #1e293b; margin-bottom: 14px;
+      flex: 1; font-family: monospace; font-size: 0.84rem; color: #38bdf8; word-break: break-all;
+      background: #03060a; padding: 13px; border-radius: 12px; border: 1px solid #1e293b;
+      display: flex; align-items: center; overflow-x: auto;
     }
     .btn-copy-action {
-      width: 100%; background: linear-gradient(135deg, #10b981, #059669);
-      color: #fff; border: none; padding: 14px; border-radius: 14px; font-weight: 800; font-size: 0.98rem;
-      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
-      box-shadow: 0 8px 24px rgba(16,185,129,0.35); transition: 0.2s;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff; border: none; padding: 13px 22px; border-radius: 12px; font-weight: 800; font-size: 0.95rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: 0 6px 20px rgba(16,185,129,0.35); transition: 0.2s; white-space: nowrap;
     }
     .btn-copy-action:hover { opacity: 0.92; transform: translateY(-1px); }
 
-    .qr-download-group {
-      display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 18px;
+    .qr-horizontal-block {
+      display: flex; align-items: center; gap: 24px; padding-top: 10px;
     }
+    @media (max-width: 600px) { .qr-horizontal-block { flex-direction: column; text-align: center; } }
     #qrCodeTarget {
-      background: #fff; padding: 12px; border-radius: 16px; width: fit-content;
+      background: #fff; padding: 10px; border-radius: 16px; width: fit-content; flex-shrink: 0;
     }
+    .qr-details-side { display: flex; flex-direction: column; gap: 8px; }
+    .qr-side-title {
+      display: flex; align-items: center; gap: 8px; font-size: 1rem; font-weight: 800; color: #fff;
+    }
+    @media (max-width: 600px) { .qr-side-title { justify-content: center; } }
+    .qr-side-desc { font-size: 0.8rem; color: #94a3b8; line-height: 1.4; }
     .btn-download-qr {
-      background: transparent; border: 1px solid rgba(16,185,129,0.4); color: #34d399;
-      font-size: 0.82rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 6px; transition: 0.2s;
+      background: transparent; border: none; color: #34d399; font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; margin-top: 4px;
+      transition: 0.2s;
     }
-    .btn-download-qr:hover { background: rgba(16,185,129,0.15); }
+    .btn-download-qr:hover { color: #6ee7b7; text-decoration: underline; }
 
     /* Columna Teléfono */
     .phone-column-box { display: flex; flex-direction: column; align-items: center; }
@@ -255,9 +271,7 @@
     .phone-title-txt { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; line-height: 1.3; }
     .phone-sub-txt { font-size: 0.82rem; color: #94a3b8; line-height: 1.4; margin-bottom: 18px; }
 
-    .phone-buttons-stack {
-      display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;
-    }
+    .phone-buttons-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
     .phone-action-btn {
       padding: 13px; border-radius: 14px; font-weight: 800; font-size: 0.9rem;
       display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;
@@ -267,7 +281,6 @@
     .p-btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 6px 20px rgba(220,39,67,0.4); }
     .p-btn-tt { background: #000; border: 1px solid #334155; box-shadow: 0 6px 20px rgba(0,242,234,0.25); }
     .p-btn-wa { background: #25d366; color: #042410; box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
-    .p-btn-gen { background: linear-gradient(135deg, #6366f1, #8b5cf6); box-shadow: 0 6px 20px rgba(99,102,241,0.35); }
 
     .phone-timer-bar {
       width: 100%; height: 5px; background: rgba(255,255,255,0.08); border-radius: 10px; margin-bottom: 14px; overflow: hidden;
@@ -320,8 +333,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label"><i class="fa-solid fa-cloud-arrow-down"></i> Enlace de descarga de fotos (Drive, Dropbox, etc.)</label>
-          <!-- Sin enlace predefinido, solo sugerencia -->
+          <label class="form-label"><i class="fa-solid fa-cloud-arrow-down"></i> Enlace de descarga de fotos (Drive, Dropbox, Pixieset, etc.)</label>
           <input type="url" id="fieldTarget" class="custom-input" placeholder="Pega aquí el enlace de la carpeta del cliente (Google Drive, Dropbox, Pixieset, etc.)">
         </div>
 
@@ -332,10 +344,16 @@
           </div>
           <div class="uploader-bar">
             <img id="thumbLogo" class="uploader-preview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="Logo">
-            <label class="btn-upload-file">
-              <i class="fa-solid fa-arrow-up-from-bracket"></i> Subir imagen (PNG/JPG)
-              <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="subirArchivo(event)">
-            </label>
+            <div class="upload-action-box">
+              <div class="upload-top-row">
+                <label class="btn-upload-file">
+                  <i class="fa-solid fa-arrow-up-from-bracket"></i> Subir imagen (PNG/JPG)
+                  <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="subirArchivo(event)">
+                </label>
+                <span style="font-size: 0.8rem; color: #64748b;">o escribe URL de imagen:</span>
+              </div>
+              <input type="url" id="fieldLogoUrl" class="custom-input" placeholder="https://ejemplo.com/tu-logo.png" oninput="manualLogoUrl(this.value)">
+            </div>
           </div>
         </div>
 
@@ -372,12 +390,23 @@
         <div class="module-head">
           <div class="module-head-left">
             <div class="module-badge-num">2</div>
-            <div class="module-title">Botones de Redes Inteligentes</div>
+            <div>
+              <div class="module-title">Botones de Redes Inteligentes</div>
+              <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">Detecta automáticamente TikTok, Instagram, WhatsApp, Facebook, etc.</div>
+            </div>
           </div>
           <button type="button" class="btn-add-social" onclick="agregarRedVacia()"><i class="fa-solid fa-plus"></i> Añadir otra red</button>
         </div>
 
         <div id="socialListGroup"></div>
+
+        <!-- Caja de detección automática -->
+        <div class="info-detection-box">
+          <div class="info-detection-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <div class="info-detection-text">
+            <strong>Detección automática:</strong> Solo escribe tu usuario (ej: <code>@mifotografia</code>) o pega el link de TikTok, WhatsApp, Facebook, YouTube o X y la app aplicará el logo oficial, los colores neón y la llamada a la acción adecuada.
+          </div>
+        </div>
       </div>
 
       <!-- MÓDULO 3: ENLACE & CÓDIGO QR -->
@@ -385,23 +414,36 @@
         <div class="module-head">
           <div class="module-head-left">
             <div class="module-badge-num green">3</div>
-            <div class="module-title">Tu Enlace & Código QR</div>
+            <div>
+              <div class="module-title">Tu Enlace & Código QR</div>
+              <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">Listo para imprimir en letreros, pulseras o tarjetas</div>
+            </div>
           </div>
           <div class="module-tag" style="color: #10b981; border-color: rgba(16,185,129,0.3);">Listo</div>
         </div>
 
         <div class="link-result-card">
-          <label class="form-label" style="color: #38bdf8;">Enlace final para el código QR:</label>
-          <div id="finalUrlText" class="url-display-text">Configura los datos arriba para generar tu link...</div>
-          <button type="button" class="btn-copy-action" onclick="copiarLinkFinal()">
-            <i class="fa-regular fa-copy"></i> Copiar Enlace
-          </button>
-          
-          <div class="qr-download-group">
-            <div id="qrCodeTarget"></div>
-            <button type="button" class="btn-download-qr" onclick="descargarQR()">
-              <i class="fa-solid fa-download"></i> Descargar imagen del QR en PNG
+          <label class="form-label" style="color: #38bdf8;">Enlace final codificado para el QR:</label>
+          <div class="link-input-row">
+            <div id="finalUrlText" class="url-display-text">Configura los datos arriba para generar tu link...</div>
+            <button type="button" class="btn-copy-action" onclick="copiarLinkFinal()">
+              <i class="fa-regular fa-copy"></i> Copiar Enlace
             </button>
+          </div>
+          
+          <div class="qr-horizontal-block">
+            <div id="qrCodeTarget"></div>
+            <div class="qr-details-side">
+              <div class="qr-side-title">
+                <i class="fa-solid fa-qrcode" style="color: #10b981;"></i> Código QR Generado al Instante
+              </div>
+              <div class="qr-side-desc">
+                Descarga este código o copia el enlace de arriba para usar tu propia herramienta de diseño (Canva, Illustrator, etc.).
+              </div>
+              <button type="button" class="btn-download-qr" onclick="descargarQR()">
+                <i class="fa-solid fa-circle-arrow-down"></i> Descargar imagen del QR en PNG
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -450,7 +492,7 @@
   </div>
 
   <div class="brand-footer-credit">
-    Impulsado con calidad fotográfica por <a href="https://instagram.com" target="_blank">Remember Photobooths</a> ✨
+    Impulsado con calidad fotográfica por <a href="https://www.instagram.com/rememberph.co/" target="_blank">Remember Photobooths</a> ✨
   </div>
 
   <script>
@@ -460,7 +502,6 @@
     let currentSecondsLeft = 5;
     let logoDataUrl = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300";
 
-    // Lista dinámica de redes sociales
     let socialNetworks = [
       { id: 1, type: 'instagram', value: '' },
       { id: 2, type: 'tiktok', value: '' }
@@ -496,17 +537,27 @@
           logoDataUrl = evt.target.result;
           document.getElementById('thumbLogo').src = logoDataUrl;
           document.getElementById('thumbLogo').style.display = 'block';
+          document.getElementById('fieldLogoUrl').value = '';
           refrescarTodo();
         };
         reader.readAsDataURL(file);
       }
     }
 
+    function manualLogoUrl(val) {
+      if (val.trim()) {
+        logoDataUrl = val.trim();
+        document.getElementById('thumbLogo').src = logoDataUrl;
+        document.getElementById('thumbLogo').style.display = 'block';
+      }
+      refrescarTodo();
+    }
+
     function quitarLogo() {
-      // Si se quita, usamos un avatar fallback neutro y elegante de fotografía
       logoDataUrl = "";
       document.getElementById('thumbLogo').style.display = 'none';
       document.getElementById('fileInput').value = "";
+      document.getElementById('fieldLogoUrl').value = "";
       refrescarTodo();
     }
 
@@ -527,7 +578,6 @@
       const net = socialNetworks.find(n => n.id === id);
       if (net) {
         net.value = val;
-        // Detección automática por texto ingresado
         const v = val.toLowerCase();
         if (v.includes('tiktok.com') || v.includes('tiktok')) net.type = 'tiktok';
         else if (v.includes('wa.me') || v.includes('whatsapp') || /^[0-9+ ]{8,}$/.test(v)) net.type = 'whatsapp';
@@ -547,12 +597,14 @@
         row.className = 'social-row-item';
 
         let iconClass = 'fa-brands fa-instagram';
-        let ph = 'Usuario de Instagram (ej: mifotografia)';
-        if (item.type === 'tiktok') { iconClass = 'fa-brands fa-tiktok'; ph = 'Usuario o link de TikTok'; }
-        if (item.type === 'whatsapp') { iconClass = 'fa-brands fa-whatsapp'; ph = 'Número WhatsApp (ej: 573001234567)'; }
+        let labelName = 'Instagram';
+        let ph = 'mifotografia_oficial';
+        if (item.type === 'tiktok') { iconClass = 'fa-brands fa-tiktok'; labelName = 'TikTok'; ph = 'tiktok.com/@mifotografia'; }
+        if (item.type === 'whatsapp') { iconClass = 'fa-brands fa-whatsapp'; labelName = 'WhatsApp'; ph = '573001234567'; }
+        if (item.type === 'facebook') { iconClass = 'fa-brands fa-facebook'; labelName = 'Facebook'; ph = 'facebook.com/mifotografia'; }
 
         row.innerHTML = `
-          <div class="social-row-icon"><i class="${iconClass}"></i></div>
+          <div class="social-row-badge"><i class="${iconClass}"></i> ${labelName}</div>
           <div class="social-input-flex">
             <input type="text" class="custom-input" placeholder="${ph}" value="${item.value}" oninput="actualizarValorRed(${item.id}, this.value)">
           </div>
@@ -596,14 +648,12 @@
       const title = document.getElementById('fieldTitle').value.trim();
       const sub = document.getElementById('fieldSub').value.trim();
 
-      // Construcción del enlace hacia go.html
       const base = window.location.origin + window.location.pathname.replace('index.html', '') + 'go.html';
       const p = new URLSearchParams();
 
       if (target) p.set('f', target);
       if (waitSeconds !== 5) p.set('t', waitSeconds);
 
-      // Redes activas con valor
       socialNetworks.forEach(net => {
         const val = net.value.trim().replace('@', '');
         if (val) {
@@ -621,8 +671,8 @@
       qrDiv.innerHTML = '';
       qrInstance = new QRCode(qrDiv, {
         text: finalUrl,
-        width: 140,
-        height: 140,
+        width: 125,
+        height: 125,
         colorDark: "#000000",
         colorLight: "#ffffff"
       });
@@ -637,7 +687,6 @@
         avatarImg.src = logoDataUrl;
         avatarWrap.style.display = 'block';
       } else {
-        // Fallback elegante de logo en lugar de romper el espacio
         avatarImg.src = 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300';
         avatarWrap.style.display = 'block';
       }
@@ -666,7 +715,6 @@
         }
       });
 
-      // Si no puso ninguna red todavía, mostramos el botón sugerido de Instagram
       if (!hasValidSocial) {
         const btn = document.createElement('div');
         btn.className = 'phone-action-btn p-btn-ig';
@@ -680,7 +728,7 @@
       navigator.clipboard.writeText(url).then(() => {
         const btn = document.querySelector('.btn-copy-action');
         const oldHtml = btn.innerHTML;
-        btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado con Éxito!';
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado!';
         setTimeout(() => btn.innerHTML = oldHtml, 2000);
       });
     }
