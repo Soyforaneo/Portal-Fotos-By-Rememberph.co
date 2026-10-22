@@ -3,449 +3,336 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generador de Enlaces - Portal de Fotos</title>
+  <title>Portal Puente Ultra Vibrante</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body {
-      background: #090d16;
+      background: #07090e;
       color: #fff;
       min-height: 100vh;
+      padding: 30px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px 15px;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .header h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
-    .header p {
-      color: #94a3b8;
-      font-size: 0.95rem;
-    }
-    .container {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-      max-width: 1100px;
-      width: 100%;
-    }
-    .panel {
-      background: rgba(18, 24, 38, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      padding: 25px;
-      flex: 1;
-      min-width: 320px;
-      max-width: 520px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    }
-    .form-group {
-      margin-bottom: 18px;
-    }
-    label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #cbd5e1;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    input, textarea {
-      width: 100%;
-      background: #0f172a;
-      border: 1px solid #334155;
-      color: #fff;
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    input:focus, textarea:focus {
-      border-color: #8b5cf6;
-    }
-    textarea {
-      resize: vertical;
-      min-height: 70px;
-    }
-    .quick-templates {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-    .pill {
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #94a3b8;
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .pill:hover {
-      background: #334155;
-      color: #fff;
-    }
-    .output-box {
-      background: #090d16;
-      border: 1px dashed #334155;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 20px;
-    }
-    .output-url {
-      font-size: 0.8rem;
-      color: #38bdf8;
-      word-break: break-all;
-      margin-bottom: 12px;
-      font-family: monospace;
-      max-height: 70px;
-      overflow-y: auto;
-    }
-    .btn-copy {
-      width: 100%;
-      background: linear-gradient(135deg, #ec4899, #8b5cf6);
-      color: #fff;
-      border: none;
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: opacity 0.2s;
-    }
-    .btn-copy:hover {
-      opacity: 0.9;
-    }
-    .phone-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-      min-width: 320px;
-      max-width: 400px;
-    }
-    .phone-mockup {
-      width: 100%;
-      height: 640px;
-      background: #000;
-      border: 10px solid #1e293b;
-      border-radius: 40px;
       position: relative;
-      overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
-      display: flex;
-      flex-direction: column;
+      overflow-x: hidden;
+    }
+    .ambient-bg {
+      position: fixed; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(236,72,153,0.15) 0%, rgba(139,92,246,0.1) 40%, transparent 70%);
+      top: -150px; left: -150px; filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .ambient-bg2 {
+      position: fixed; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%);
+      bottom: -150px; right: -150px; filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .top-bar {
+      max-width: 1200px; width: 100%; display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 25px; z-index: 1;
+    }
+    .brand-title { display: flex; align-items: center; gap: 14px; }
+    .brand-icon {
+      width: 44px; height: 44px; border-radius: 14px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+      box-shadow: 0 0 20px rgba(236,72,153,0.5);
+    }
+    .brand-title h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+    .badge-sub {
+      font-size: 0.7rem; background: rgba(236,72,153,0.2); color: #f472b6;
+      padding: 3px 8px; border-radius: 20px; border: 1px solid rgba(236,72,153,0.3); font-weight: 700;
+    }
+    .main-grid {
+      max-width: 1200px; width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr;
+      gap: 30px; z-index: 1;
+    }
+    @media (max-width: 950px) { .main-grid { grid-template-columns: 1fr; } }
+    
+    .card-box {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .box-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .box-header-left { display: flex; align-items: center; gap: 12px; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%; background: #ec4899;
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem;
+    }
+    .box-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+    .field-label { display: block; font-size: 0.8rem; font-weight: 700; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .custom-input, .custom-textarea {
+      width: 100%; background: rgba(8, 12, 22, 0.8); border: 1px solid #1e293b;
+      color: #fff; padding: 12px 14px; border-radius: 12px; font-size: 0.95rem; outline: none; transition: 0.2s;
+    }
+    .custom-input:focus, .custom-textarea:focus { border-color: #ec4899; box-shadow: 0 0 15px rgba(236,72,153,0.3); }
+    .custom-textarea { resize: vertical; min-height: 65px; }
+
+    .templates-row { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+    .tpl-btn {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      color: #cbd5e1; font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; cursor: pointer; transition: 0.2s;
+    }
+    .tpl-btn:hover { background: #ec4899; color: #fff; }
+
+    /* Output Section */
+    .link-out-container {
+      background: #090d16; border: 1px dashed rgba(236,72,153,0.4); border-radius: 16px; padding: 16px; margin-top: 15px;
+    }
+    .clean-url {
+      font-family: monospace; font-size: 0.85rem; color: #38bdf8; word-break: break-all;
+      background: #060911; padding: 10px; border-radius: 8px; border: 1px solid #1e293b; margin-bottom: 12px;
+    }
+    .btn-action-copy {
+      width: 100%; background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;
+    }
+    .btn-action-copy:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* Mockup Celular */
+    .phone-column { display: flex; flex-direction: column; align-items: center; }
+    .phone-outer {
+      width: 375px; height: 690px; background: #0c101c; border: 12px solid #1e293b;
+      border-radius: 46px; box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 50px rgba(139,92,246,0.25);
+      position: relative; overflow: hidden; display: flex; flex-direction: column;
     }
     .phone-notch {
-      width: 120px;
-      height: 18px;
-      background: #1e293b;
-      border-bottom-left-radius: 12px;
-      border-bottom-right-radius: 12px;
-      margin: 0 auto;
-      z-index: 10;
+      width: 140px; height: 22px; background: #1e293b; border-bottom-left-radius: 14px;
+      border-bottom-right-radius: 14px; margin: 0 auto; z-index: 10;
     }
     .phone-screen {
-      flex: 1;
-      background: #090d16;
-      padding: 20px 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      flex: 1; padding: 25px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      background: radial-gradient(circle at top, #1e1b4b 0%, #07090e 70%); position: relative;
     }
-    .sim-card {
-      background: rgba(18, 24, 38, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 20px 15px;
-      width: 100%;
-      text-align: center;
-      position: relative;
+    .modal-card {
+      width: 100%; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 26px; padding: 26px 20px;
+      text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
     }
-    .sim-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 700;
+    .sim-close-btn {
+      position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #94a3b8;
     }
-    .sim-logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
-      padding: 2px;
-      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    .avatar-wrapper {
+      width: 90px; height: 90px; border-radius: 20px; margin: 0 auto 15px; padding: 3px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4); box-shadow: 0 0 25px rgba(236,72,153,0.5);
     }
-    .sim-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      margin-bottom: 6px;
+    .avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+    .sim-h1 { font-size: 1.25rem; font-weight: 800; margin-bottom: 6px; }
+    .sim-p { font-size: 0.8rem; color: #94a3b8; line-height: 1.35; margin-bottom: 18px; }
+
+    .btn-ig-glow {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      box-shadow: 0 5px 20px rgba(220,39,67,0.45); color: #fff; padding: 13px; border-radius: 14px;
+      font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
+      gap: 8px; text-decoration: none; margin-bottom: 10px;
     }
-    .sim-sub {
-      font-size: 0.75rem;
-      color: #94a3b8;
-      margin-bottom: 16px;
-      line-height: 1.3;
+    .btn-tt-glow {
+      background: #000; border: 1px solid #334155; box-shadow: 0 5px 20px rgba(0,242,234,0.25);
+      color: #fff; padding: 13px; border-radius: 14px; font-weight: 700; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; margin-bottom: 15px;
     }
-    .sim-socials {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 15px;
+    .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.08); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+    .progress-inner { width: 60%; height: 100%; background: linear-gradient(90deg, #ec4899, #06b6d4); }
+    .btn-fake-wait {
+      width: 100%; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08); color: #64748b; font-size: 0.85rem; font-weight: 700;
     }
-    .sim-btn {
-      padding: 10px;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-decoration: none;
-    }
-    .sim-btn-ig { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
-    .sim-btn-tt { background: #000; border: 1px solid #334155; }
-    .sim-btn-wa { background: #25d366; color: #072b14; }
-    .sim-bar {
-      width: 100%;
-      height: 4px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 4px;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-    .sim-bar-fill {
-      width: 40%;
-      height: 100%;
-      background: linear-gradient(90deg, #ec4899, #06b6d4);
-    }
-    .sim-btn-fotos {
-      width: 100%;
-      padding: 10px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #64748b;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-    #qrContainer {
-      display: flex;
-      justify-content: center;
-      margin: 15px 0;
-      background: #fff;
-      padding: 10px;
-      border-radius: 10px;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
+    #qrcode-box {
+      margin-top: 15px; display: flex; justify-content: center; background: #fff;
+      padding: 10px; border-radius: 12px; width: fit-content; margin-left: auto; margin-right: auto;
     }
   </style>
 </head>
 <body>
+  <div class="ambient-bg"></div>
+  <div class="ambient-bg2"></div>
 
-  <div class="header">
-    <h1>Panel Generador de Enlaces</h1>
-    <p>Crea el link puente con tus redes para el código QR de cada cliente</p>
+  <div class="top-bar">
+    <div class="brand-title">
+      <div class="brand-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <div>
+        <h1>Portal Puente <span class="badge-sub">Ultra Vibrante</span></h1>
+        <p style="font-size: 0.8rem; color: #94a3b8;">Configura el acceso para tus clientes y genera su código QR</p>
+      </div>
+    </div>
   </div>
 
-  <div class="container">
-    
-    <!-- PANEL DE CONFIGURACIÓN -->
-    <div class="panel">
-      <div class="form-group">
-        <label>1. Enlace de las fotos (Drive, Dropbox, etc.)</label>
-        <input type="url" id="inputTarget" placeholder="https://drive.google.com/..." value="https://drive.google.com/">
-      </div>
+  <div class="main-grid">
+    <div>
+      <div class="card-box">
+        <div class="box-header">
+          <div class="box-header-left">
+            <div class="step-num">1</div>
+            <div class="box-title">Fotos & Redes Sociales</div>
+          </div>
+        </div>
 
-      <div class="form-group">
-        <label>2. Tus Redes Sociales</label>
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <input type="text" id="inputIg" placeholder="Instagram (ej: tu_marca)" value="tu_marca">
-          <input type="text" id="inputTt" placeholder="TikTok (opcional, ej: tu_marca)">
-          <input type="text" id="inputWa" placeholder="WhatsApp (opcional, ej: 573001234567)">
+        <div style="margin-bottom: 15px;">
+          <label class="field-label">Enlace de descarga de fotos (Drive, Dropbox, etc.)</label>
+          <input type="url" id="targetLink" class="custom-input" placeholder="https://drive.google.com/..." value="https://drive.google.com/">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
+          <div>
+            <label class="field-label">Usuario de Instagram</label>
+            <input type="text" id="igUser" class="custom-input" placeholder="ej: tu_estudio" value="rememberph">
+          </div>
+          <div>
+            <label class="field-label">TikTok (opcional)</label>
+            <input type="text" id="ttUser" class="custom-input" placeholder="ej: tu_estudio">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+          <label class="field-label">Logo de tu Marca (URL de imagen)</label>
+          <input type="url" id="logoUrl" class="custom-input" placeholder="https://i.imgur.com/..." value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+          <label class="field-label">Título</label>
+          <input type="text" id="titleText" class="custom-input" value="¡Tus fotos en alta calidad están listas! 📸">
+        </div>
+
+        <div>
+          <label class="field-label">Mensaje personalizado</label>
+          <textarea id="subText" class="custom-textarea">Síguenos para no perderte el contenido exclusivo del evento y etiquetarte en tus fotos.</textarea>
+          <div class="templates-row">
+            <button type="button" class="tpl-btn" onclick="setMsg('¡Gracias por celebrar con nosotros! Síguenos para no perderte ningún recuerdo.')">🎉 Fiesta / Evento</button>
+            <button type="button" class="tpl-btn" onclick="setMsg('Un recuerdo inolvidable. Síguenos y comparte tu experiencia con nosotros.')">💍 Boda / Especial</button>
+            <button type="button" class="tpl-btn" onclick="setMsg('Tus retratos profesionales están listos para descargar en alta definición.')">📸 Retrato</button>
+          </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label>3. Logo o Foto de Marca (URL opcional)</label>
-        <input type="url" id="inputLogo" placeholder="https://i.imgur.com/tu-foto.jpg">
-      </div>
-
-      <div class="form-group">
-        <label>4. Título Principal</label>
-        <input type="text" id="inputTitle" value="¡Tus fotos están listas! ✨">
-      </div>
-
-      <div class="form-group">
-        <label>5. Subtítulo / Mensaje</label>
-        <textarea id="inputSubtitle">¡Gracias por celebrar con nosotros! Síguenos para ver los mejores momentos del evento.</textarea>
-        <div class="quick-templates">
-          <button type="button" class="pill" onclick="setSub('¡Gracias por celebrar con nosotros! Síguenos para no perderte ningún recuerdo.')">Fiesta / Evento</button>
-          <button type="button" class="pill" onclick="setSub('Un recuerdo inolvidable. Síguenos y comparte tu experiencia con nosotros.')">Boda / Especial</button>
-          <button type="button" class="pill" onclick="setSub('Tus retratos profesionales están listos para descargar en alta calidad.')">Retrato</button>
+      <div class="card-box">
+        <div class="box-header">
+          <div class="box-header-left">
+            <div class="step-num" style="background: #10b981;">2</div>
+            <div class="box-title">Tu Enlace Limpio y Código QR</div>
+          </div>
         </div>
-      </div>
 
-      <!-- LINK RESULTANTE Y QR -->
-      <div class="output-box">
-        <label style="color: #38bdf8;">Enlace final para tu Código QR:</label>
-        <div id="outputUrl" class="output-url"></div>
-        <button type="button" class="btn-copy" onclick="copiarLink()">
-          <i class="fa-regular fa-copy"></i> Copiar Enlace
-        </button>
-        <div id="qrContainer"></div>
+        <div class="link-out-container">
+          <div id="cleanUrlDisplay" class="clean-url">Generando...</div>
+          <button type="button" class="btn-action-copy" onclick="copiarEnlace()">
+            <i class="fa-regular fa-copy"></i> Copiar Enlace Corto
+          </button>
+          <div id="qrcode-box"></div>
+        </div>
       </div>
     </div>
 
-    <!-- VISTA PREVIA DEL CELULAR -->
-    <div class="phone-container">
-      <div class="phone-mockup">
+    <!-- MOCKUP CELULAR -->
+    <div class="phone-column">
+      <div class="phone-outer">
         <div class="phone-notch"></div>
         <div class="phone-screen">
-          <div class="sim-card">
-            <div class="sim-close">5s</div>
-            <img id="simLogoImg" class="sim-logo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" style="display: none;">
-            <div id="simTitle" class="sim-title">¡Tus fotos están listas! ✨</div>
-            <div id="simSub" class="sim-sub">¡Gracias por celebrar con nosotros! Síguenos para ver los mejores momentos del evento.</div>
+          <div class="modal-card">
+            <div class="sim-close-btn">5s</div>
             
-            <div class="sim-socials" id="simSocials"></div>
-
-            <div class="sim-bar">
-              <div class="sim-bar-fill"></div>
+            <div class="avatar-wrapper" id="simAvatarWrap">
+              <img id="simAvatar" class="avatar-img" src="" alt="Avatar">
             </div>
 
-            <button class="sim-btn-fotos">Preparando fotos (5s)...</button>
+            <div id="simTitle" class="sim-h1"></div>
+            <div id="simSub" class="sim-p"></div>
+
+            <div id="simIgBtn" class="btn-ig-glow">
+              <i class="fa-brands fa-instagram"></i> Seguir en Instagram
+            </div>
+
+            <div id="simTtBtn" class="btn-tt-glow" style="display: none;">
+              <i class="fa-brands fa-tiktok"></i> Seguir en TikTok
+            </div>
+
+            <div class="progress-bar">
+              <div class="progress-inner"></div>
+            </div>
+
+            <button class="btn-fake-wait">Esperando 5s...</button>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
   <script>
-    let qrInstance = null;
+    let qr = null;
 
-    function setSub(text) {
-      document.getElementById('inputSubtitle').value = text;
-      actualizar();
+    function setMsg(msg) {
+      document.getElementById('subText').value = msg;
+      render();
     }
 
-    function actualizar() {
-      const target = document.getElementById('inputTarget').value.trim();
-      const ig = document.getElementById('inputIg').value.trim();
-      const tt = document.getElementById('inputTt').value.trim();
-      const wa = document.getElementById('inputWa').value.trim();
-      const logo = document.getElementById('inputLogo').value.trim();
-      const title = document.getElementById('inputTitle').value.trim();
-      const subtitle = document.getElementById('inputSubtitle').value.trim();
+    function render() {
+      const target = document.getElementById('targetLink').value.trim();
+      const ig = document.getElementById('igUser').value.trim().replace('@', '');
+      const tt = document.getElementById('ttUser').value.trim().replace('@', '');
+      const logo = document.getElementById('logoUrl').value.trim();
+      const title = document.getElementById('titleText').value.trim();
+      const sub = document.getElementById('subText').value.trim();
 
-      // Construcción de la URL real
-      const baseUrl = window.location.origin + window.location.pathname.replace('index.html', '') + 'go.html';
-      const params = new URLSearchParams();
+      // Construcción del enlace limpio y corto
+      const base = window.location.origin + window.location.pathname.replace('index.html', '') + 'go.html';
+      const p = new URLSearchParams();
+      if (target) p.set('f', target);
+      if (ig) p.set('ig', ig);
+      if (tt) p.set('tt', tt);
+      if (logo) p.set('l', logo);
 
-      if (target) params.set('destino', target);
-      if (ig) params.set('ig', ig);
-      if (tt) params.set('tiktok', tt);
-      if (wa) params.set('wa', wa);
-      if (logo) params.set('logo', logo);
-      if (title) params.set('titulo', encodeURIComponent(title));
-      if (subtitle) params.set('subtitulo', encodeURIComponent(subtitle));
+      const urlFinal = base + '?' + p.toString();
+      document.getElementById('cleanUrlDisplay').textContent = urlFinal;
 
-      const finalUrl = baseUrl + '?' + params.toString();
-      document.getElementById('outputUrl').textContent = finalUrl;
-
-      // Actualizar Código QR
-      const qrDiv = document.getElementById('qrContainer');
-      qrDiv.innerHTML = '';
-      qrInstance = new QRCode(qrDiv, {
-        text: finalUrl,
-        width: 120,
-        height: 120,
+      // QR
+      const qrBox = document.getElementById('qrcode-box');
+      qrBox.innerHTML = '';
+      qr = new QRCode(qrBox, {
+        text: urlFinal,
+        width: 130,
+        height: 130,
         colorDark: "#000000",
         colorLight: "#ffffff"
       });
 
-      // Actualizar Vista Celular
-      document.getElementById('simTitle').textContent = title || '¡Tus fotos están listas!';
-      document.getElementById('simSub').textContent = subtitle;
+      // Actualizar Celular
+      document.getElementById('simTitle').textContent = title;
+      document.getElementById('simSub').textContent = sub;
 
-      const simLogo = document.getElementById('simLogoImg');
+      const avatarWrap = document.getElementById('simAvatarWrap');
+      const avatarImg = document.getElementById('simAvatar');
       if (logo) {
-        simLogo.src = logo;
-        simLogo.style.display = 'inline-block';
+        avatarImg.src = logo;
+        avatarWrap.style.display = 'block';
       } else {
-        simLogo.style.display = 'none';
+        avatarWrap.style.display = 'none';
       }
 
-      const simSocials = document.getElementById('simSocials');
-      simSocials.innerHTML = '';
-
-      if (ig) {
-        simSocials.innerHTML += `<div class="sim-btn sim-btn-ig"><i class="fa-brands fa-instagram"></i> Seguir en Instagram</div>`;
-      }
-      if (tt) {
-        simSocials.innerHTML += `<div class="sim-btn sim-btn-tt"><i class="fa-brands fa-tiktok"></i> Seguir en TikTok</div>`;
-      }
-      if (wa) {
-        simSocials.innerHTML += `<div class="sim-btn sim-btn-wa"><i class="fa-brands fa-whatsapp"></i> Chatear en WhatsApp</div>`;
-      }
-      if (!ig && !tt && !wa) {
-        simSocials.innerHTML += `<div class="sim-btn sim-btn-ig"><i class="fa-brands fa-instagram"></i> Seguir en Instagram</div>`;
-      }
+      const ttBtn = document.getElementById('simTtBtn');
+      ttBtn.style.display = tt ? 'flex' : 'none';
     }
 
-    function copiarLink() {
-      const url = document.getElementById('outputUrl').textContent;
-      navigator.clipboard.writeText(url).then(() => {
-        const btn = document.querySelector('.btn-copy');
-        const oldHtml = btn.innerHTML;
-        btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado!';
-        setTimeout(() => { btn.innerHTML = oldHtml; }, 2000);
+    function copiarEnlace() {
+      const link = document.getElementById('cleanUrlDisplay').textContent;
+      navigator.clipboard.writeText(link).then(() => {
+        const btn = document.querySelector('.btn-action-copy');
+        const old = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado con Éxito!';
+        setTimeout(() => btn.innerHTML = old, 2000);
       });
     }
 
-    // Escuchar cambios en los campos de texto
-    document.querySelectorAll('input, textarea').forEach(el => {
-      el.addEventListener('input', actualizar);
-    });
-
-    window.onload = actualizar;
+    document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', render));
+    window.onload = render;
   </script>
 </body>
 </html>
